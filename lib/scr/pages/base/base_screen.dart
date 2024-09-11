@@ -23,6 +23,7 @@ class _BaseScreenState extends State<BaseScreen> {
         }),
         type: BottomNavigationBarType.fixed,
         iconSize: 30,
+        selectedItemColor: const Color(0xff194a01),
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
