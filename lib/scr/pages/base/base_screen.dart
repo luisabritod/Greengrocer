@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:greengrocer/scr/pages/home/home.dart';
 
 class BaseScreen extends StatefulWidget {
   const BaseScreen({super.key});
@@ -45,11 +46,10 @@ class _BaseScreenState extends State<BaseScreen> {
         physics: const NeverScrollableScrollPhysics(),
         controller: pageController,
         children: [
-          Container(
-            color: Colors.red,
-          ),
+          const HomeTab(),
           Container(
             color: Colors.green,
+            child: Image.asset('assets/images/fruits/apple.png'),
           ),
           Container(
             color: Colors.blue,

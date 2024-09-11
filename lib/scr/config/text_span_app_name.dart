@@ -3,24 +3,29 @@ import 'package:flutter/material.dart';
 class TextSpanAppName extends StatelessWidget {
   const TextSpanAppName({
     super.key,
+    required this.color,
+    required this.fontSize,
   });
+
+  final Color color;
+  final double fontSize;
 
   @override
   Widget build(BuildContext context) {
-    return const Text.rich(
+    return Text.rich(
       TextSpan(
         style: TextStyle(
-          fontSize: 40,
+          fontSize: fontSize,
         ),
         children: [
           TextSpan(
             text: 'Green',
             style: TextStyle(
               fontWeight: FontWeight.bold,
-              color: Colors.white,
+              color: color,
             ),
           ),
-          TextSpan(
+          const TextSpan(
               text: 'grocer',
               style: TextStyle(
                 color: Color(0xff194a01),

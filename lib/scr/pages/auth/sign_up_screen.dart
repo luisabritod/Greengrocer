@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:greengrocer/scr/auth/components/components.dart';
+import 'package:greengrocer/scr/pages/auth/components/components.dart';
 import 'package:greengrocer/scr/config/config.dart';
 
 class SignUpScreen extends StatelessWidget {

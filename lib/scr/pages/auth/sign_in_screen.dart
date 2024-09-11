@@ -1,7 +1,7 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
-import 'package:greengrocer/scr/auth/auth.dart';
-import 'package:greengrocer/scr/base/base.dart';
+import 'package:greengrocer/scr/pages/auth/auth.dart';
+import 'package:greengrocer/scr/pages/base/base.dart';
 import 'package:greengrocer/scr/config/config.dart';
 
 class SignInScreen extends StatelessWidget {
@@ -23,7 +23,10 @@ class SignInScreen extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const TextSpanAppName(),
+                    const TextSpanAppName(
+                      fontSize: 40,
+                      color: Colors.white,
+                    ),
                     SizedBox(
                       height: 30,
                       child: DefaultTextStyle(
@@ -79,7 +82,7 @@ class SignInScreen extends StatelessWidget {
                     CustomLoginButton(
                       text: 'Login',
                       onPressed: () {
-                        Navigator.push(
+                        Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                             builder: (context) => const BaseScreen(),
