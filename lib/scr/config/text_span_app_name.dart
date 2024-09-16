@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:greengrocer/scr/config/config.dart';
 
 class TextSpanAppName extends StatelessWidget {
   const TextSpanAppName({
@@ -25,10 +26,10 @@ class TextSpanAppName extends StatelessWidget {
               color: color,
             ),
           ),
-          const TextSpan(
+          TextSpan(
               text: 'grocer',
               style: TextStyle(
-                color: Color(0xff194a01),
+                color: CustomColors.primaryGreen,
               )),
         ],
       ),

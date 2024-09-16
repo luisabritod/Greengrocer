@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:greengrocer/scr/config/config.dart';
 import 'package:greengrocer/scr/models/models.dart';
 import 'package:greengrocer/scr/pages/product/product.dart';
 import 'package:greengrocer/scr/services/services.dart';
@@ -48,10 +49,10 @@ class ItemTile extends StatelessWidget {
                     children: [
                       Text(
                         utilsServices.priceToCurrency(item.price),
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
-                          color: Color(0xff194a01),
+                          color: CustomColors.primaryGreen,
                         ),
                       ),
                       Text(
@@ -77,9 +78,9 @@ class ItemTile extends StatelessWidget {
             child: Container(
               height: 40,
               width: 35,
-              decoration: const BoxDecoration(
-                color: Color(0xff194a01),
-                borderRadius: BorderRadius.only(
+              decoration: BoxDecoration(
+                color: CustomColors.primaryGreen,
+                borderRadius: const BorderRadius.only(
                   bottomLeft: Radius.circular(15),
                   topRight: Radius.circular(20),
                 ),

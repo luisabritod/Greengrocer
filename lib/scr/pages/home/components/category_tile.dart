@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:greengrocer/scr/config/config.dart';
 
 class CategoryTile extends StatelessWidget {
   const CategoryTile(
@@ -22,16 +23,16 @@ class CategoryTile extends StatelessWidget {
           horizontal: 20,
         ),
         decoration: BoxDecoration(
-          color: isSelected ? const Color(0xff194a01) : Colors.white,
+          color: isSelected ? CustomColors.primaryGreen : Colors.white,
           borderRadius: BorderRadius.circular(20),
           border: Border.all(
-            color: isSelected ? Colors.transparent : const Color(0xff194a01),
+            color: isSelected ? Colors.transparent : CustomColors.primaryGreen,
           ),
         ),
         child: Text(
           category,
           style: TextStyle(
-            color: isSelected ? Colors.white : const Color(0xff194a01),
+            color: isSelected ? Colors.white : CustomColors.primaryGreen,
             fontSize: 16,
           ),
         ),

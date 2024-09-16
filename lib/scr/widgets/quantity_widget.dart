@@ -10,6 +10,7 @@ class QuantityWidget extends StatefulWidget {
 int quantity = 1;
 
 class _QuantityWidgetState extends State<QuantityWidget> {
+  Icon icon = const Icon(Icons.remove);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -30,12 +31,15 @@ class _QuantityWidgetState extends State<QuantityWidget> {
           IconButton(
             onPressed: () {
               setState(() {
-                if (quantity > 1) {
+                if (quantity <= 1) {
+                  icon = const Icon(Icons.delete);
+                } else {
                   quantity--;
+                  icon = const Icon(Icons.remove);
                 }
               });
             },
-            icon: const Icon(Icons.remove),
+            icon: icon,
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 6.0),

@@ -20,5 +20,5 @@ abstract class CustomColors {
       MaterialColor(0xFF49b869, _swatchOpacity);
 
   // static Color secondaryGreen = const Color.fromRGBO(73, 184, 105, .4);
-  static Color secondaryGreen = const Color(0xffffffff);
+  static Color primaryGreen = const Color(0xff194a01);
 }

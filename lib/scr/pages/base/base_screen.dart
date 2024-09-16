@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:greengrocer/scr/config/config.dart';
+import 'package:greengrocer/scr/pages/cart/cart.dart';
 import 'package:greengrocer/scr/pages/home/home.dart';
 
 class BaseScreen extends StatefulWidget {
@@ -23,7 +25,7 @@ class _BaseScreenState extends State<BaseScreen> {
         }),
         type: BottomNavigationBarType.fixed,
         iconSize: 30,
-        selectedItemColor: const Color(0xff194a01),
+        selectedItemColor: CustomColors.primaryGreen,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
@@ -48,10 +50,7 @@ class _BaseScreenState extends State<BaseScreen> {
         controller: pageController,
         children: [
           const HomeTab(),
-          Container(
-            color: Colors.green,
-            child: Image.asset('assets/images/fruits/apple.png'),
-          ),
+          const CartTab(),
           Container(
             color: Colors.blue,
           ),
