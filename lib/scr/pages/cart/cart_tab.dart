@@ -1,11 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:greengrocer/scr/config/config.dart';
+import 'package:greengrocer/scr/models/models.dart';
+import 'package:greengrocer/scr/pages/cart/cart.dart';
 import 'package:greengrocer/scr/services/services.dart';
 
-class CartTab extends StatelessWidget {
-  CartTab({super.key});
+class CartTab extends StatefulWidget {
+  const CartTab({super.key});
 
+  @override
+  State<CartTab> createState() => _CartTabState();
+}
+
+class _CartTabState extends State<CartTab> {
   final UtilsServices utilsServices = UtilsServices();
+
+  void removeItemFromCart(CartItemModel cartItem) {
+    setState(() {
+      cartItems.remove(cartItem);
+    });
+  }
+
+  double cartTotalPrice() {
+    double totalPrice = 0;
+    for (var item in cartItems) {
+      setState(() {
+        totalPrice += item.totalPrice();
+      });
+    }
+    return totalPrice;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,8 +40,16 @@ class CartTab extends StatelessWidget {
       ),
       body: Column(
         children: [
-          const Expanded(
-            child: Placeholder(),
+          Expanded(
+            child: ListView.builder(
+              itemCount: cartItems.length,
+              itemBuilder: (context, index) {
+                return CartTile(
+                  cartItem: cartItems[index],
+                  remove: removeItemFromCart,
+                );
+              },
+            ),
           ),
           const SizedBox(height: 20),
           Container(
@@ -48,7 +79,7 @@ class CartTab extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(bottom: 15),
                   child: Text(
-                    utilsServices.priceToCurrency('100'),
+                    utilsServices.priceToCurrency(cartTotalPrice()),
                     style: TextStyle(
                       fontSize: 23,
                       color: CustomColors.primaryGreen,
@@ -59,7 +90,10 @@ class CartTab extends StatelessWidget {
                 SizedBox(
                   height: 50,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () async {
+                      bool? result = await showOrderConfirmation();
+                      print(result);
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: CustomColors.primaryGreen,
                       shape: RoundedRectangleBorder(
@@ -81,5 +115,40 @@ class CartTab extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Future<bool?> showOrderConfirmation() {
+    return showDialog<bool>(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            ),
+            title: const Text('Order Confirmation'),
+            content: const Text('Do you want to confirm this order?'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context, false);
+                },
+                child: const Text('No'),
+              ),
+              TextButton(
+                style: TextButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  backgroundColor: CustomColors.primaryGreen,
+                  foregroundColor: Colors.white,
+                ),
+                onPressed: () {
+                  Navigator.pop(context, true);
+                },
+                child: const Text('Yes'),
+              ),
+            ],
+          );
+        });
   }
 }

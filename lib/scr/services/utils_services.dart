@@ -1,10 +1,9 @@
 import 'package:intl/intl.dart';
 
 class UtilsServices {
-  String priceToCurrency(String price) {
+  String priceToCurrency(double price) {
     NumberFormat format = NumberFormat.simpleCurrency(locale: 'en_us');
-    double priceValue = double.parse(price);
 
-    return format.format(priceValue);
+    return format.format(price);
   }
 }

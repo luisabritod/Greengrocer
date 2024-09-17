@@ -3,15 +3,15 @@ import 'package:greengrocer/scr/models/models.dart';
 ItemModels apple = ItemModels(
   itemName: 'Apple',
   imgUrl: 'assets/images/fruits/apple.png',
-  unit: '1 kg',
-  price: '2.99',
+  unit: 'kg',
+  price: 2.99,
   description: 'Fresh and juicy apple',
 );
 
 ItemModels grape = ItemModels(
   imgUrl: 'assets/images/fruits/grape.png',
   itemName: 'Grape',
-  price: '7.4',
+  price: 7.4,
   unit: 'kg',
   description:
       'The best grape in the region, offering the best price among any marketplace. This item contains essential vitamins for body strengthening, resulting in a healthy life.',
@@ -20,7 +20,7 @@ ItemModels grape = ItemModels(
 ItemModels guava = ItemModels(
   imgUrl: 'assets/images/fruits/guava.png',
   itemName: 'Guava',
-  price: '11.5',
+  price: 11.5,
   unit: 'kg',
   description:
       'The best guava in the region, offering the best price among any marketplace. This item contains essential vitamins for body strengthening, resulting in a healthy life.',
@@ -29,8 +29,8 @@ ItemModels guava = ItemModels(
 ItemModels kiwi = ItemModels(
   imgUrl: 'assets/images/fruits/kiwi.png',
   itemName: 'Kiwi',
-  price: '2.5',
-  unit: 'unit',
+  price: 2.5,
+  unit: 'un',
   description:
       'The best kiwi in the region, offering the best price among any marketplace. This item contains essential vitamins for body strengthening, resulting in a healthy life.',
 );
@@ -38,8 +38,8 @@ ItemModels kiwi = ItemModels(
 ItemModels mango = ItemModels(
   imgUrl: 'assets/images/fruits/mango.png',
   itemName: 'Mango',
-  price: '2.5',
-  unit: 'unit',
+  price: 2.5,
+  unit: 'un',
   description:
       'The best mango in the region, offering the best price among any marketplace. This item contains essential vitamins for body strengthening, resulting in a healthy life.',
 );
@@ -47,7 +47,7 @@ ItemModels mango = ItemModels(
 ItemModels papaya = ItemModels(
   imgUrl: 'assets/images/fruits/papaya.png',
   itemName: 'Papaya',
-  price: '8',
+  price: 8,
   unit: 'kg',
   description:
       'The best papaya in the region, offering the best price among any marketplace. This item contains essential vitamins for body strengthening, resulting in a healthy life.',
