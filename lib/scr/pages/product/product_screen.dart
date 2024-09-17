@@ -91,7 +91,7 @@ class _ProductScreenState extends State<ProductScreen> {
                           style: TextStyle(
                             fontSize: 23,
                             fontWeight: FontWeight.bold,
-                            color: CustomColors.customSwatchColor,
+                            color: CustomColors.primaryGreenLight,
                           ),
                         ),
                         const SizedBox(height: 20),
@@ -112,8 +112,7 @@ class _ProductScreenState extends State<ProductScreen> {
                           height: 55,
                           child: ElevatedButton.icon(
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: CustomColors.customContrastColor
-                                  .withOpacity(0.6),
+                              backgroundColor: CustomColors.primaryGreenLight,
                               foregroundColor: Colors.white,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15),

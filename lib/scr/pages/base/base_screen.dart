@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:greengrocer/scr/config/config.dart';
-import 'package:greengrocer/scr/pages/cart/cart.dart';
-import 'package:greengrocer/scr/pages/home/home.dart';
+import 'package:greengrocer/scr/pages/pages.dart';
 
 class BaseScreen extends StatefulWidget {
   const BaseScreen({super.key});
@@ -50,13 +49,11 @@ class _BaseScreenState extends State<BaseScreen> {
         controller: pageController,
         children: [
           const HomeTab(),
-          CartTab(),
+          const CartTab(),
           Container(
             color: Colors.blue,
           ),
-          Container(
-            color: Colors.yellow,
-          ),
+          const ProfileTab(),
         ],
       ),
     );

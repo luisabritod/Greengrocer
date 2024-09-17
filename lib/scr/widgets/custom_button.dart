@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:greengrocer/scr/config/config.dart';
 
-class CustomLoginButton extends StatelessWidget {
-  const CustomLoginButton({
+class CustomButton extends StatelessWidget {
+  const CustomButton({
     super.key,
     required this.text,
     required this.onPressed,
@@ -16,7 +17,8 @@ class CustomLoginButton extends StatelessWidget {
       height: 50,
       child: ElevatedButton(
         style: ButtonStyle(
-          backgroundColor: WidgetStateProperty.all(Colors.green),
+          backgroundColor:
+              WidgetStateProperty.all(CustomColors.primaryGreenLight),
           foregroundColor: WidgetStateProperty.all(Colors.white),
         ),
         onPressed: onPressed,

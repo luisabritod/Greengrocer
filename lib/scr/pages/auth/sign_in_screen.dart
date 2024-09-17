@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:greengrocer/scr/pages/auth/auth.dart';
 import 'package:greengrocer/scr/pages/base/base.dart';
 import 'package:greengrocer/scr/config/config.dart';
+import 'package:greengrocer/scr/widgets/widgets.dart';
 
 class SignInScreen extends StatelessWidget {
   const SignInScreen({super.key});
@@ -12,7 +13,7 @@ class SignInScreen extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      backgroundColor: CustomColors.customSwatchColor,
+      backgroundColor: CustomColors.primaryGreenLight,
       body: SingleChildScrollView(
         child: SizedBox(
           height: size.height,
@@ -79,7 +80,7 @@ class SignInScreen extends StatelessWidget {
                       keyboardType: TextInputType.text,
                     ),
                     //login button
-                    CustomLoginButton(
+                    CustomButton(
                       text: 'Login',
                       onPressed: () {
                         Navigator.pushReplacement(
@@ -133,7 +134,7 @@ class SignInScreen extends StatelessWidget {
                         style: OutlinedButton.styleFrom(
                           side: BorderSide(
                             width: 2,
-                            color: CustomColors.customSwatchColor,
+                            color: CustomColors.primaryGreenLight,
                           ),
                         ),
                         child: const Text(

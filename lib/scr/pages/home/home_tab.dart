@@ -22,7 +22,7 @@ class _HomeTabState extends State<HomeTab> {
           backgroundColor: Colors.transparent,
           title: TextSpanAppName(
             fontSize: 30,
-            color: CustomColors.customSwatchColor,
+            color: CustomColors.primaryGreenLight,
           ),
           centerTitle: true,
           actions: [
