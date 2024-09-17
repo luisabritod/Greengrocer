@@ -70,3 +70,12 @@ List<String> categories = [
   'Dairy',
   'Cereal',
 ];
+
+List<CartItemModel> cartItems = [
+  CartItemModel(item: apple, quantity: 2),
+  CartItemModel(item: grape, quantity: 1),
+  CartItemModel(item: guava, quantity: 3),
+  CartItemModel(item: kiwi, quantity: 2),
+  CartItemModel(item: mango, quantity: 1),
+  CartItemModel(item: papaya, quantity: 2),
+];
