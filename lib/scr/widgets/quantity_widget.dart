@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:greengrocer/scr/config/config.dart';
+import 'package:greengrocer/scr/widgets/widgets.dart';
 
-class QuantityWidget extends StatefulWidget {
-  const QuantityWidget({super.key});
+class QuantityWidget extends StatelessWidget {
+  const QuantityWidget(
+      {super.key,
+      required this.value,
+      required this.suffixText,
+      required this.result});
 
-  @override
-  State<QuantityWidget> createState() => _QuantityWidgetState();
-}
+  final int value;
+  final String suffixText;
+  final Function(int quantity) result;
 
-int quantity = 1;
-
-class _QuantityWidgetState extends State<QuantityWidget> {
-  Icon icon = const Icon(Icons.remove);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -28,36 +30,34 @@ class _QuantityWidgetState extends State<QuantityWidget> {
       ),
       child: Row(
         children: [
-          IconButton(
+          QuantityButton(
+            color: Colors.grey.shade200,
+            icon: Icons.remove,
             onPressed: () {
-              setState(() {
-                if (quantity <= 1) {
-                  icon = const Icon(Icons.delete);
-                } else {
-                  quantity--;
-                  icon = const Icon(Icons.remove);
-                }
-              });
+              if (value == 1) return;
+              int resultCount = value - 1;
+              result(resultCount);
             },
-            icon: icon,
+            iconColor: CustomColors.primaryGreen,
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 6.0),
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: Text(
-              quantity.toString(),
+              '$value$suffixText',
               style: const TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
               ),
             ),
           ),
-          IconButton(
+          QuantityButton(
+            color: CustomColors.primaryGreen,
+            icon: Icons.add,
             onPressed: () {
-              setState(() {
-                quantity++;
-              });
+              int resultCount = value + 1;
+              result(resultCount);
             },
-            icon: const Icon(Icons.add),
+            iconColor: Colors.white,
           ),
         ],
       ),
