@@ -3,6 +3,7 @@ import 'package:greengrocer/scr/config/config.dart';
 import 'package:greengrocer/scr/models/models.dart';
 import 'package:greengrocer/scr/pages/cart/cart.dart';
 import 'package:greengrocer/scr/services/services.dart';
+import 'package:greengrocer/scr/widgets/widgets.dart';
 
 class CartTab extends StatefulWidget {
   const CartTab({super.key});
@@ -92,7 +93,14 @@ class _CartTabState extends State<CartTab> {
                   child: ElevatedButton(
                     onPressed: () async {
                       bool? result = await showOrderConfirmation();
-                      print(result);
+
+                      if (result ?? false) {
+                        showDialog(
+                            context: context,
+                            builder: (_) {
+                              return PaymentDialog(order: orders.first);
+                            });
+                      }
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: CustomColors.primaryGreen,
