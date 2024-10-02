@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:greengrocer/scr/pages/auth/auth.dart';
+import 'package:greengrocer/scr/pages/pages.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         scaffoldBackgroundColor: Colors.white.withAlpha(190),
       ),
-      home: const SignInScreen(),
+      home: const SplashScreen(),
     );
   }
 }
