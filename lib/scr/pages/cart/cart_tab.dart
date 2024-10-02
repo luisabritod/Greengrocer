@@ -18,6 +18,9 @@ class _CartTabState extends State<CartTab> {
   void removeItemFromCart(CartItemModel cartItem) {
     setState(() {
       cartItems.remove(cartItem);
+
+      utilsServices.showToast(
+          message: '${cartItem.item.itemName} removed from cart');
     });
   }
 
@@ -96,10 +99,14 @@ class _CartTabState extends State<CartTab> {
 
                       if (result ?? false) {
                         showDialog(
-                            context: context,
-                            builder: (_) {
-                              return PaymentDialog(order: orders.first);
-                            });
+                          context: context,
+                          builder: (_) {
+                            return PaymentDialog(order: orders.first);
+                          },
+                        );
+                      } else {
+                        utilsServices.showToast(
+                            message: 'Order not confirmed', isError: true);
                       }
                     },
                     style: ElevatedButton.styleFrom(
