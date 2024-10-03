@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:greengrocer/scr/config/config.dart';
+import 'package:greengrocer/scr/pages_routes/pages_routes.dart';
 import 'package:greengrocer/scr/widgets/widgets.dart';
 
 class SignUpScreen extends StatelessWidget {
@@ -81,7 +82,12 @@ class SignUpScreen extends StatelessWidget {
                             keyboardType: TextInputType.number,
                           ),
                           const SizedBox(height: 10),
-                          CustomButton(text: 'Sign Up', onPressed: () {}),
+                          CustomButton(
+                              text: 'Sign Up',
+                              onPressed: () {
+                                Navigator.pushReplacementNamed(
+                                    context, AppRoutes.base);
+                              }),
                         ],
                       ),
                     ),

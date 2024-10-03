@@ -1,8 +1,7 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
-import 'package:greengrocer/scr/pages/auth/auth.dart';
-import 'package:greengrocer/scr/pages/base/base.dart';
 import 'package:greengrocer/scr/config/config.dart';
+import 'package:greengrocer/scr/pages_routes/pages_routes.dart';
 import 'package:greengrocer/scr/widgets/widgets.dart';
 
 class SignInScreen extends StatelessWidget {
@@ -83,12 +82,7 @@ class SignInScreen extends StatelessWidget {
                     CustomButton(
                       text: 'Login',
                       onPressed: () {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const BaseScreen(),
-                          ),
-                        );
+                        Navigator.pushReplacementNamed(context, AppRoutes.base);
                       },
                     ),
                     Align(
@@ -125,11 +119,8 @@ class SignInScreen extends StatelessWidget {
                       height: 50,
                       child: OutlinedButton(
                         onPressed: () {
-                          Navigator.of(context).pushReplacement(
-                            MaterialPageRoute(
-                              builder: (context) => const SignUpScreen(),
-                            ),
-                          );
+                          Navigator.pushReplacementNamed(
+                              context, AppRoutes.signUp);
                         },
                         style: OutlinedButton.styleFrom(
                           side: BorderSide(

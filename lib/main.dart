@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:greengrocer/scr/pages/pages.dart';
+import 'package:greengrocer/scr/pages_routes/pages_routes.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +18,8 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         scaffoldBackgroundColor: Colors.white.withAlpha(190),
       ),
-      home: const SplashScreen(),
+      initialRoute: AppRoutes.splash,
+      routes: AppPages.routes,
     );
   }
 }
