@@ -10,6 +10,9 @@ class SignInScreen extends StatelessWidget {
 
   final _formKey = GlobalKey<FormState>();
 
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -83,6 +86,7 @@ class SignInScreen extends StatelessWidget {
                           }
                           return null;
                         },
+                        controller: emailController,
                       ),
                       //password
                       CustomTextField(
@@ -100,13 +104,17 @@ class SignInScreen extends StatelessWidget {
                           }
                           return null;
                         },
+                        controller: passwordController,
                       ),
                       //login button
                       CustomButton(
                         text: 'Login',
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
-                            Get.offAllNamed(PagesRoutes.base);
+                            String name = emailController.text;
+                            String password = passwordController.text;
+                            print({'name': name, 'password': password});
+                            //   Get.offAllNamed(PagesRoutes.base);
                           }
                         },
                       ),
@@ -143,7 +151,7 @@ class SignInScreen extends StatelessWidget {
                         height: 50,
                         child: OutlinedButton(
                           onPressed: () {
-                            Get.toNamed(PagesRoutes.signUp);
+                            // Get.toNamed(PagesRoutes.signUp);
                           },
                           style: OutlinedButton.styleFrom(
                             side: BorderSide(
