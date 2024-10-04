@@ -8,6 +8,7 @@ class CustomTextField extends StatefulWidget {
     required this.labelText,
     required this.keyboardType,
     this.isPassword = false,
+    required this.validator,
   });
 
   final IconData icon;
@@ -15,6 +16,7 @@ class CustomTextField extends StatefulWidget {
   final String labelText;
   final TextInputType keyboardType;
   final bool isPassword;
+  final String? Function(String?)? validator;
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
@@ -37,6 +39,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
       child: TextFormField(
         keyboardType: TextInputType.emailAddress,
         obscureText: isObscure,
+        validator: widget.validator,
         decoration: InputDecoration(
           labelText: widget.labelText,
           hintText: widget.hintText,

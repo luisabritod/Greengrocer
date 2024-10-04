@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:greengrocer/scr/pages_routes/pages_routes.dart';
 
 void main() {
@@ -10,7 +11,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'GreenGrocer',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
@@ -18,8 +19,8 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         scaffoldBackgroundColor: Colors.white.withAlpha(190),
       ),
-      initialRoute: AppRoutes.splash,
-      routes: AppPages.routes,
+      getPages: AppPages.pages,
+      initialRoute: PagesRoutes.splash,
     );
   }
 }

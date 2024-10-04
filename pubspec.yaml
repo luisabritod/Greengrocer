@@ -41,6 +41,7 @@ dependencies:
   add_to_cart_animation: ^0.0.7
   fluttertoast: ^8.2.8
   flutter_bloc: ^8.1.6
+  get: ^4.6.6
 
 dev_dependencies:
   flutter_test:

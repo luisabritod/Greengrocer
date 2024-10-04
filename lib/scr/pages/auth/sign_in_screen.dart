@@ -1,11 +1,14 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:greengrocer/scr/config/config.dart';
 import 'package:greengrocer/scr/pages_routes/pages_routes.dart';
 import 'package:greengrocer/scr/widgets/widgets.dart';
 
 class SignInScreen extends StatelessWidget {
-  const SignInScreen({super.key});
+  SignInScreen({super.key});
+
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -60,81 +63,102 @@ class SignInScreen extends StatelessWidget {
                     top: Radius.circular(45),
                   ),
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    //email
-                    const CustomTextField(
-                      icon: Icons.email,
-                      hintText: 'Enter your email',
-                      labelText: 'Email',
-                      keyboardType: TextInputType.emailAddress,
-                    ),
-                    //password
-                    const CustomTextField(
-                      icon: Icons.lock,
-                      hintText: 'Enter your password',
-                      labelText: 'Password',
-                      isPassword: true,
-                      keyboardType: TextInputType.text,
-                    ),
-                    //login button
-                    CustomButton(
-                      text: 'Login',
-                      onPressed: () {
-                        Navigator.pushReplacementNamed(context, AppRoutes.base);
-                      },
-                    ),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: TextButton(
-                          onPressed: () {},
-                          child: const Text('Forgot password?')),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 20.0),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: Divider(
-                              color: Colors.grey.withAlpha(90),
-                              thickness: 2,
-                            ),
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 16),
-                            child: Text('Or'),
-                          ),
-                          Expanded(
-                            child: Divider(
-                              color: Colors.grey.withAlpha(90),
-                              thickness: 2,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    // const SizedBox(height: 20),
-                    SizedBox(
-                      height: 50,
-                      child: OutlinedButton(
-                        onPressed: () {
-                          Navigator.pushReplacementNamed(
-                              context, AppRoutes.signUp);
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      //email
+                      CustomTextField(
+                        icon: Icons.email,
+                        hintText: 'Enter your email',
+                        labelText: 'Email',
+                        keyboardType: TextInputType.emailAddress,
+                        validator: (email) {
+                          if (email == null || email.isEmpty) {
+                            return 'Email is required';
+                          }
+                          if (!email.isEmail) {
+                            return 'Invalid email';
+                          }
+                          return null;
                         },
-                        style: OutlinedButton.styleFrom(
-                          side: BorderSide(
-                            width: 2,
-                            color: CustomColors.primaryGreenLight,
-                          ),
-                        ),
-                        child: const Text(
-                          'Sign up',
-                          style: TextStyle(fontSize: 18),
+                      ),
+                      //password
+                      CustomTextField(
+                        icon: Icons.lock,
+                        hintText: 'Enter your password',
+                        labelText: 'Password',
+                        isPassword: true,
+                        keyboardType: TextInputType.text,
+                        validator: (password) {
+                          if (password == null || password.isEmpty) {
+                            return 'Password is required';
+                          }
+                          if (password.length < 6) {
+                            return 'Password must be at least 6 characters';
+                          }
+                          return null;
+                        },
+                      ),
+                      //login button
+                      CustomButton(
+                        text: 'Login',
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            Get.offAllNamed(PagesRoutes.base);
+                          }
+                        },
+                      ),
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: TextButton(
+                            onPressed: () {},
+                            child: const Text('Forgot password?')),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 20.0),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Divider(
+                                color: Colors.grey.withAlpha(90),
+                                thickness: 2,
+                              ),
+                            ),
+                            const Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 16),
+                              child: Text('Or'),
+                            ),
+                            Expanded(
+                              child: Divider(
+                                color: Colors.grey.withAlpha(90),
+                                thickness: 2,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                    ),
-                  ],
+                      SizedBox(
+                        height: 50,
+                        child: OutlinedButton(
+                          onPressed: () {
+                            Get.toNamed(PagesRoutes.signUp);
+                          },
+                          style: OutlinedButton.styleFrom(
+                            side: BorderSide(
+                              width: 2,
+                              color: CustomColors.primaryGreenLight,
+                            ),
+                          ),
+                          child: const Text(
+                            'Sign up',
+                            style: TextStyle(fontSize: 18),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],

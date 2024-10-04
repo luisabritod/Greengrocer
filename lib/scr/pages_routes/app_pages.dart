@@ -1,18 +1,30 @@
-import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:greengrocer/scr/pages/pages.dart';
 
-class AppRoutes {
-  static const String splash = '/';
-  static const String base = '/home';
-  static const String signIn = '/signIn';
-  static const String signUp = '/signUp';
+abstract class AppPages {
+  static final pages = <GetPage>[
+    GetPage(
+      name: PagesRoutes.splash,
+      page: () => const SplashScreen(),
+    ),
+    GetPage(
+      name: PagesRoutes.signIn,
+      page: () => SignInScreen(),
+    ),
+    GetPage(
+      name: PagesRoutes.signUp,
+      page: () => const SignUpScreen(),
+    ),
+    GetPage(
+      name: PagesRoutes.base,
+      page: () => const BaseScreen(),
+    ),
+  ];
 }
 
-class AppPages {
-  static Map<String, WidgetBuilder> routes = {
-    AppRoutes.splash: (context) => const SplashScreen(),
-    AppRoutes.base: (context) => const BaseScreen(),
-    AppRoutes.signIn: (context) => const SignInScreen(),
-    AppRoutes.signUp: (context) => const SignUpScreen(),
-  };
+abstract class PagesRoutes {
+  static const String splash = '/splash';
+  static const String signIn = '/sign-in';
+  static const String signUp = '/sign-up';
+  static const String base = '/base';
 }
