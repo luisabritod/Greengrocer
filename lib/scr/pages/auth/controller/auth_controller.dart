@@ -12,18 +12,18 @@ class AuthController extends GetxController {
   }) async {
     isLoading.value = true;
 
-    await authRepository.signIn(email: email, password: password);
-    // await Future.delayed(const Duration(seconds: 2));
+    AuthResult result =
+        await authRepository.signIn(email: email, password: password);
 
     isLoading.value = false;
 
-    // try {
-    //   isLoading(true);
-    //   // await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
-    // } catch (e) {
-    //   Get.snackbar('Error', e.toString());
-    // } finally {
-    //   isLoading(false);
-    // }
+    result.when(
+      success: (user) {
+        print(user);
+      },
+      error: (message) {
+        print(message);
+      },
+    );
   }
 }
