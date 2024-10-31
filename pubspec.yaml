@@ -43,6 +43,9 @@ dependencies:
   flutter_bloc: ^8.1.6
   get: ^4.6.6
   dio: ^5.7.0
+  json_serializable: ^6.8.0
+  build_runner: ^2.4.13
+  json_annotation: ^4.9.0
 
 dev_dependencies:
   flutter_test:
