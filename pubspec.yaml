@@ -42,6 +42,7 @@ dependencies:
   fluttertoast: ^8.2.8
   flutter_bloc: ^8.1.6
   get: ^4.6.6
+  dio: ^5.7.0
 
 dev_dependencies:
   flutter_test:
