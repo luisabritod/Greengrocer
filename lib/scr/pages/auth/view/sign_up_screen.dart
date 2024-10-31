@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:greengrocer/scr/config/config.dart';
 import 'package:greengrocer/scr/services/services.dart';
 // import 'package:greengrocer/scr/pages_routes/pages_routes.dart';
@@ -110,7 +109,6 @@ class SignUpScreen extends StatelessWidget {
                                 text: 'Sign Up',
                                 onPressed: () {
                                   _formKey.currentState!.validate();
-                                  // Get.offNamed(PagesRoutes.base);
                                 }),
                           ],
                         ),
