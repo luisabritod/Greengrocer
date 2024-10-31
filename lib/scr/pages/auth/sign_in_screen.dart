@@ -2,7 +2,7 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:greengrocer/scr/config/config.dart';
-import 'package:greengrocer/scr/pages_routes/pages_routes.dart';
+import 'package:greengrocer/scr/pages/auth/controller/controller.dart';
 import 'package:greengrocer/scr/widgets/widgets.dart';
 
 class SignInScreen extends StatelessWidget {
@@ -107,16 +107,51 @@ class SignInScreen extends StatelessWidget {
                         controller: passwordController,
                       ),
                       //login button
-                      CustomButton(
-                        text: 'Login',
-                        onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-                            String name = emailController.text;
-                            String password = passwordController.text;
-                            print({'name': name, 'password': password});
-                            //   Get.offAllNamed(PagesRoutes.base);
-                          }
-                        },
+                      SizedBox(
+                        height: 50,
+                        child: GetX<AuthController>(
+                          builder: (authController) {
+                            return ElevatedButton(
+                              style: ButtonStyle(
+                                backgroundColor: WidgetStateProperty.all(
+                                    CustomColors.primaryGreenLight),
+                                foregroundColor:
+                                    WidgetStateProperty.all(Colors.white),
+                              ),
+                              onPressed: authController.isLoading.value
+                                  ? null
+                                  : () {
+                                      FocusScope.of(context).unfocus();
+
+                                      if (_formKey.currentState!.validate()) {
+                                        String email = emailController.text;
+                                        String password =
+                                            passwordController.text;
+                                        authController.signIn(
+                                            email: email, password: password);
+                                        //   Get.offAllNamed(PagesRoutes.base);
+                                      } else {
+                                        Get.snackbar('Error',
+                                            'Invalid email or password',
+                                            backgroundColor:
+                                                const Color.fromARGB(
+                                                    255, 190, 116, 111),
+                                            colorText: Colors.white,
+                                            snackPosition:
+                                                SnackPosition.BOTTOM);
+                                      }
+                                    },
+                              child: authController.isLoading.value
+                                  ? const CircularProgressIndicator(
+                                      color: Colors.white,
+                                    )
+                                  : const Text(
+                                      'Login',
+                                      style: TextStyle(fontSize: 18),
+                                    ),
+                            );
+                          },
+                        ),
                       ),
                       Align(
                         alignment: Alignment.centerRight,
