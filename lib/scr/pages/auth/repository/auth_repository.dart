@@ -16,8 +16,10 @@ class AuthRepository {
 
     if (result['result'] != null) {
       print('works');
+      print(result['result']);
     } else {
-      print('error');
+      print('error occured');
+      print(result['error']);
     }
 
     // await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);

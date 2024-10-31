@@ -1,7 +1,10 @@
 import 'package:get/get.dart';
+import 'package:greengrocer/scr/pages/auth/auth.dart';
 
 class AuthController extends GetxController {
   RxBool isLoading = false.obs;
+
+  final authRepository = AuthRepository();
 
   Future<void> signIn({
     required String email,
@@ -9,7 +12,8 @@ class AuthController extends GetxController {
   }) async {
     isLoading.value = true;
 
-    await Future.delayed(const Duration(seconds: 2));
+    await authRepository.signIn(email: email, password: password);
+    // await Future.delayed(const Duration(seconds: 2));
 
     isLoading.value = false;
 
