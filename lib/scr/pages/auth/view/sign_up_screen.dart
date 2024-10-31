@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:greengrocer/scr/config/config.dart';
+import 'package:greengrocer/scr/pages/auth/auth.dart';
 import 'package:greengrocer/scr/services/services.dart';
-// import 'package:greengrocer/scr/pages_routes/pages_routes.dart';
 import 'package:greengrocer/scr/widgets/widgets.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
@@ -19,6 +20,7 @@ class SignUpScreen extends StatelessWidget {
   );
 
   final _formKey = GlobalKey<FormState>();
+  final AuthController authController = Get.find<AuthController>();
 
   @override
   Widget build(BuildContext context) {
@@ -62,27 +64,36 @@ class SignUpScreen extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
-                            const CustomTextField(
+                            CustomTextField(
                               icon: Icons.email,
                               hintText: 'Enter your email',
                               labelText: 'Email',
+                              onSaved: (value) {
+                                authController.user.email = value;
+                              },
                               keyboardType: TextInputType.emailAddress,
                               validator: emailValidator,
                             ),
                             const SizedBox(height: 10),
-                            const CustomTextField(
+                            CustomTextField(
                               icon: Icons.lock,
                               hintText: 'Enter your password',
                               labelText: 'Password',
+                              onSaved: (value) {
+                                authController.user.password = value;
+                              },
                               keyboardType: TextInputType.visiblePassword,
                               isPassword: true,
                               validator: passwordValidator,
                             ),
                             const SizedBox(height: 10),
-                            const CustomTextField(
+                            CustomTextField(
                               icon: Icons.person,
                               hintText: 'Enter your name',
                               labelText: 'Name',
+                              onSaved: (value) {
+                                authController.user.name = value;
+                              },
                               keyboardType: TextInputType.name,
                               validator: nameValidator,
                             ),
@@ -91,6 +102,9 @@ class SignUpScreen extends StatelessWidget {
                               icon: Icons.phone,
                               hintText: 'Enter your phone number',
                               labelText: 'Phone',
+                              onSaved: (value) {
+                                authController.user.phone = value;
+                              },
                               inputFormatters: [phoneFormatter],
                               keyboardType: TextInputType.phone,
                               validator: phoneValidator,
@@ -100,16 +114,43 @@ class SignUpScreen extends StatelessWidget {
                               icon: Icons.file_copy,
                               hintText: 'Enter your CPF',
                               labelText: 'CPF',
+                              onSaved: (value) {
+                                authController.user.cpf = value;
+                              },
                               inputFormatters: [cpfFormatter],
                               keyboardType: TextInputType.number,
                               validator: cpfValidator,
                             ),
                             const SizedBox(height: 10),
-                            CustomButton(
-                                text: 'Sign Up',
-                                onPressed: () {
-                                  _formKey.currentState!.validate();
-                                }),
+                            SizedBox(
+                              height: 50,
+                              child: Obx(() => ElevatedButton(
+                                  style: ButtonStyle(
+                                    backgroundColor: WidgetStateProperty.all(
+                                        CustomColors.primaryGreenLight),
+                                    foregroundColor:
+                                        WidgetStateProperty.all(Colors.white),
+                                  ),
+                                  onPressed: authController.isLoading.value
+                                      ? null
+                                      : () {
+                                          FocusScope.of(context).unfocus();
+
+                                          if (_formKey.currentState!
+                                              .validate()) {
+                                            _formKey.currentState!.save();
+                                            authController.signUp();
+                                          }
+                                        },
+                                  child: authController.isLoading.value
+                                      ? const CircularProgressIndicator(
+                                          color: Colors.white,
+                                        )
+                                      : const Text(
+                                          'Sign Up',
+                                          style: TextStyle(fontSize: 18),
+                                        ))),
+                            ),
                           ],
                         ),
                       ),

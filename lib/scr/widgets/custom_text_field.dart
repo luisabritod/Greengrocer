@@ -12,6 +12,7 @@ class CustomTextField extends StatefulWidget {
     this.isPassword = false,
     required this.validator,
     this.controller,
+    this.onSaved,
   });
 
   final IconData icon;
@@ -20,6 +21,7 @@ class CustomTextField extends StatefulWidget {
   final TextInputType keyboardType;
   final bool isPassword;
   final String? Function(String?)? validator;
+  final void Function(String?)? onSaved;
   final TextEditingController? controller;
   final List<TextInputFormatter>? inputFormatters;
 
@@ -47,6 +49,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         controller: widget.controller,
         obscureText: isObscure,
         validator: widget.validator,
+        onSaved: widget.onSaved,
         decoration: InputDecoration(
           labelText: widget.labelText,
           hintText: widget.hintText,
