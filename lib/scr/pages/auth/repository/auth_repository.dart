@@ -1,4 +1,5 @@
 import 'package:greengrocer/scr/constants/constants.dart';
+import 'package:greengrocer/scr/models/models.dart';
 import 'package:greengrocer/scr/services/services.dart';
 
 class AuthRepository {
@@ -16,7 +17,9 @@ class AuthRepository {
 
     if (result['result'] != null) {
       print('works');
-      print(result['result']);
+
+      final user = UserModel.fromMap(result['result']);
+      print(user);
     } else {
       print('error occured');
       print(result['error']);
