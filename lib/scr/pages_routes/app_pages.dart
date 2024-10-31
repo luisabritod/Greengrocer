@@ -13,7 +13,7 @@ abstract class AppPages {
     ),
     GetPage(
       name: PagesRoutes.signUp,
-      page: () => const SignUpScreen(),
+      page: () => SignUpScreen(),
     ),
     GetPage(
       name: PagesRoutes.base,
