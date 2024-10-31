@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:greengrocer/scr/config/config.dart';
 import 'package:greengrocer/scr/pages/auth/controller/controller.dart';
+import 'package:greengrocer/scr/pages_routes/pages_routes.dart';
 import 'package:greengrocer/scr/widgets/widgets.dart';
 
 class SignInScreen extends StatelessWidget {
@@ -176,7 +177,7 @@ class SignInScreen extends StatelessWidget {
                         height: 50,
                         child: OutlinedButton(
                           onPressed: () {
-                            // Get.toNamed(PagesRoutes.signUp);
+                            Get.toNamed(PagesRoutes.signUp);
                           },
                           style: OutlinedButton.styleFrom(
                             side: BorderSide(
