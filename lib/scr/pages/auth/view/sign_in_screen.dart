@@ -129,16 +129,6 @@ class SignInScreen extends StatelessWidget {
                                             passwordController.text;
                                         authController.signIn(
                                             email: email, password: password);
-                                        //   Get.offAllNamed(PagesRoutes.base);
-                                      } else {
-                                        Get.snackbar('Error',
-                                            'Invalid email or password',
-                                            backgroundColor:
-                                                const Color.fromARGB(
-                                                    255, 190, 116, 111),
-                                            colorText: Colors.white,
-                                            snackPosition:
-                                                SnackPosition.BOTTOM);
                                       }
                                     },
                               child: authController.isLoading.value
