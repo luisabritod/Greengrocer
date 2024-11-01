@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:greengrocer/scr/config/config.dart';
 import 'package:greengrocer/scr/pages/auth/controller/controller.dart';
+import 'package:greengrocer/scr/pages/auth/view/components/components.dart';
 import 'package:greengrocer/scr/pages_routes/pages_routes.dart';
 import 'package:greengrocer/scr/widgets/widgets.dart';
 
@@ -147,7 +148,14 @@ class SignInScreen extends StatelessWidget {
                       Align(
                         alignment: Alignment.centerRight,
                         child: TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              showDialog(
+                                  context: context,
+                                  builder: (_) {
+                                    return ForgotPasswordDialog(
+                                        email: emailController.text);
+                                  });
+                            },
                             child: const Text('Forgot password?')),
                       ),
                       Padding(
