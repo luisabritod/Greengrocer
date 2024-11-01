@@ -5,6 +5,7 @@ import 'package:greengrocer/scr/config/config.dart';
 import 'package:greengrocer/scr/pages/auth/controller/controller.dart';
 import 'package:greengrocer/scr/pages/auth/view/components/components.dart';
 import 'package:greengrocer/scr/pages_routes/pages_routes.dart';
+import 'package:greengrocer/scr/services/services.dart';
 import 'package:greengrocer/scr/widgets/widgets.dart';
 
 class SignInScreen extends StatelessWidget {
@@ -14,6 +15,8 @@ class SignInScreen extends StatelessWidget {
 
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+
+  final utilsServices = UtilsServices();
 
   @override
   Widget build(BuildContext context) {
@@ -148,13 +151,18 @@ class SignInScreen extends StatelessWidget {
                       Align(
                         alignment: Alignment.centerRight,
                         child: TextButton(
-                            onPressed: () {
-                              showDialog(
+                            onPressed: () async {
+                              final bool? result = await showDialog(
                                   context: context,
                                   builder: (_) {
                                     return ForgotPasswordDialog(
                                         email: emailController.text);
                                   });
+                              if (result ?? false) {
+                                utilsServices.showToast(
+                                    message:
+                                        'An email has been sent to reset your password');
+                              }
                             },
                             child: const Text('Forgot password?')),
                       ),
