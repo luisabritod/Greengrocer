@@ -1,4 +1,6 @@
 import 'package:greengrocer/scr/constants/constants.dart';
+import 'package:greengrocer/scr/models/models.dart';
+import 'package:greengrocer/scr/pages/pages.dart';
 import 'package:greengrocer/scr/services/services.dart';
 
 class HomeRepository {
@@ -12,10 +14,15 @@ class HomeRepository {
 
     if (result['result'] != null) {
       //list of categories
-      return result['result'];
+      List<CategoryModels> data =
+          (result['result'] as List<Map<String, dynamic>>)
+              .map((e) => CategoryModels.fromJson(e))
+              .toList();
+
+      return HomeResult<CategoryModels>.success(data);
     } else {
       //error
-      return null;
+      return HomeResult.error('Failed to get categories');
     }
   }
 }
