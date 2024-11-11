@@ -37,20 +37,20 @@ mixin _$AuthResult {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Success value) success,
-    required TResult Function(Error value) error,
+    required TResult Function(AuthSuccess value) success,
+    required TResult Function(AuthError value) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Success value)? success,
-    TResult? Function(Error value)? error,
+    TResult? Function(AuthSuccess value)? success,
+    TResult? Function(AuthError value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Success value)? success,
-    TResult Function(Error value)? error,
+    TResult Function(AuthSuccess value)? success,
+    TResult Function(AuthError value)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -78,20 +78,20 @@ class _$AuthResultCopyWithImpl<$Res, $Val extends AuthResult>
 }
 
 /// @nodoc
-abstract class _$$SuccessImplCopyWith<$Res> {
-  factory _$$SuccessImplCopyWith(
-          _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
-      __$$SuccessImplCopyWithImpl<$Res>;
+abstract class _$$AuthSuccessImplCopyWith<$Res> {
+  factory _$$AuthSuccessImplCopyWith(
+          _$AuthSuccessImpl value, $Res Function(_$AuthSuccessImpl) then) =
+      __$$AuthSuccessImplCopyWithImpl<$Res>;
   @useResult
   $Res call({UserModel user});
 }
 
 /// @nodoc
-class __$$SuccessImplCopyWithImpl<$Res>
-    extends _$AuthResultCopyWithImpl<$Res, _$SuccessImpl>
-    implements _$$SuccessImplCopyWith<$Res> {
-  __$$SuccessImplCopyWithImpl(
-      _$SuccessImpl _value, $Res Function(_$SuccessImpl) _then)
+class __$$AuthSuccessImplCopyWithImpl<$Res>
+    extends _$AuthResultCopyWithImpl<$Res, _$AuthSuccessImpl>
+    implements _$$AuthSuccessImplCopyWith<$Res> {
+  __$$AuthSuccessImplCopyWithImpl(
+      _$AuthSuccessImpl _value, $Res Function(_$AuthSuccessImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of AuthResult
@@ -101,7 +101,7 @@ class __$$SuccessImplCopyWithImpl<$Res>
   $Res call({
     Object? user = null,
   }) {
-    return _then(_$SuccessImpl(
+    return _then(_$AuthSuccessImpl(
       null == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
@@ -112,8 +112,8 @@ class __$$SuccessImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SuccessImpl implements Success {
-  _$SuccessImpl(this.user);
+class _$AuthSuccessImpl implements AuthSuccess {
+  _$AuthSuccessImpl(this.user);
 
   @override
   final UserModel user;
@@ -127,7 +127,7 @@ class _$SuccessImpl implements Success {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SuccessImpl &&
+            other is _$AuthSuccessImpl &&
             (identical(other.user, user) || other.user == user));
   }
 
@@ -139,8 +139,8 @@ class _$SuccessImpl implements Success {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
-      __$$SuccessImplCopyWithImpl<_$SuccessImpl>(this, _$identity);
+  _$$AuthSuccessImplCopyWith<_$AuthSuccessImpl> get copyWith =>
+      __$$AuthSuccessImplCopyWithImpl<_$AuthSuccessImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -176,8 +176,8 @@ class _$SuccessImpl implements Success {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Success value) success,
-    required TResult Function(Error value) error,
+    required TResult Function(AuthSuccess value) success,
+    required TResult Function(AuthError value) error,
   }) {
     return success(this);
   }
@@ -185,8 +185,8 @@ class _$SuccessImpl implements Success {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Success value)? success,
-    TResult? Function(Error value)? error,
+    TResult? Function(AuthSuccess value)? success,
+    TResult? Function(AuthError value)? error,
   }) {
     return success?.call(this);
   }
@@ -194,8 +194,8 @@ class _$SuccessImpl implements Success {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Success value)? success,
-    TResult Function(Error value)? error,
+    TResult Function(AuthSuccess value)? success,
+    TResult Function(AuthError value)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -205,33 +205,33 @@ class _$SuccessImpl implements Success {
   }
 }
 
-abstract class Success implements AuthResult {
-  factory Success(final UserModel user) = _$SuccessImpl;
+abstract class AuthSuccess implements AuthResult {
+  factory AuthSuccess(final UserModel user) = _$AuthSuccessImpl;
 
   UserModel get user;
 
   /// Create a copy of AuthResult
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
+  _$$AuthSuccessImplCopyWith<_$AuthSuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ErrorImplCopyWith<$Res> {
-  factory _$$ErrorImplCopyWith(
-          _$ErrorImpl value, $Res Function(_$ErrorImpl) then) =
-      __$$ErrorImplCopyWithImpl<$Res>;
+abstract class _$$AuthErrorImplCopyWith<$Res> {
+  factory _$$AuthErrorImplCopyWith(
+          _$AuthErrorImpl value, $Res Function(_$AuthErrorImpl) then) =
+      __$$AuthErrorImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String message});
 }
 
 /// @nodoc
-class __$$ErrorImplCopyWithImpl<$Res>
-    extends _$AuthResultCopyWithImpl<$Res, _$ErrorImpl>
-    implements _$$ErrorImplCopyWith<$Res> {
-  __$$ErrorImplCopyWithImpl(
-      _$ErrorImpl _value, $Res Function(_$ErrorImpl) _then)
+class __$$AuthErrorImplCopyWithImpl<$Res>
+    extends _$AuthResultCopyWithImpl<$Res, _$AuthErrorImpl>
+    implements _$$AuthErrorImplCopyWith<$Res> {
+  __$$AuthErrorImplCopyWithImpl(
+      _$AuthErrorImpl _value, $Res Function(_$AuthErrorImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of AuthResult
@@ -241,7 +241,7 @@ class __$$ErrorImplCopyWithImpl<$Res>
   $Res call({
     Object? message = null,
   }) {
-    return _then(_$ErrorImpl(
+    return _then(_$AuthErrorImpl(
       null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -252,8 +252,8 @@ class __$$ErrorImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ErrorImpl implements Error {
-  _$ErrorImpl(this.message);
+class _$AuthErrorImpl implements AuthError {
+  _$AuthErrorImpl(this.message);
 
   @override
   final String message;
@@ -267,7 +267,7 @@ class _$ErrorImpl implements Error {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ErrorImpl &&
+            other is _$AuthErrorImpl &&
             (identical(other.message, message) || other.message == message));
   }
 
@@ -279,8 +279,8 @@ class _$ErrorImpl implements Error {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
-      __$$ErrorImplCopyWithImpl<_$ErrorImpl>(this, _$identity);
+  _$$AuthErrorImplCopyWith<_$AuthErrorImpl> get copyWith =>
+      __$$AuthErrorImplCopyWithImpl<_$AuthErrorImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -316,8 +316,8 @@ class _$ErrorImpl implements Error {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Success value) success,
-    required TResult Function(Error value) error,
+    required TResult Function(AuthSuccess value) success,
+    required TResult Function(AuthError value) error,
   }) {
     return error(this);
   }
@@ -325,8 +325,8 @@ class _$ErrorImpl implements Error {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Success value)? success,
-    TResult? Function(Error value)? error,
+    TResult? Function(AuthSuccess value)? success,
+    TResult? Function(AuthError value)? error,
   }) {
     return error?.call(this);
   }
@@ -334,8 +334,8 @@ class _$ErrorImpl implements Error {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Success value)? success,
-    TResult Function(Error value)? error,
+    TResult Function(AuthSuccess value)? success,
+    TResult Function(AuthError value)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -345,14 +345,14 @@ class _$ErrorImpl implements Error {
   }
 }
 
-abstract class Error implements AuthResult {
-  factory Error(final String message) = _$ErrorImpl;
+abstract class AuthError implements AuthResult {
+  factory AuthError(final String message) = _$AuthErrorImpl;
 
   String get message;
 
   /// Create a copy of AuthResult
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
+  _$$AuthErrorImplCopyWith<_$AuthErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
