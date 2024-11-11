@@ -1,4 +1,4 @@
 export 'binding/binding.dart';
-export 'components/components.dart';
 export 'controller/controller.dart';
-export 'home_tab.dart';
+export 'view/view.dart';
+export 'repository/repository.dart';
