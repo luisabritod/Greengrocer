@@ -1,7 +1,6 @@
 import 'package:add_to_cart_animation/add_to_cart_animation.dart';
 import 'package:add_to_cart_animation/add_to_cart_icon.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:greengrocer/scr/config/config.dart';
 import 'package:greengrocer/scr/pages/home/home.dart';
 import 'package:greengrocer/scr/widgets/widgets.dart';
@@ -29,8 +28,6 @@ class _HomeTabState extends State<HomeTab> {
   @override
   void initState() {
     super.initState();
-
-    Get.find<HomeController>().printHello();
 
     Future.delayed(const Duration(seconds: 3), () {
       setState(() {
