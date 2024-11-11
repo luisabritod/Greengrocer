@@ -25,6 +25,8 @@ class HomeController extends GetxController {
   selectCategory(CategoryModels category) {
     selectedCategory = category;
     update();
+
+    getAllProducts();
   }
 
   Future<void> getAllCategories() async {
@@ -44,6 +46,34 @@ class HomeController extends GetxController {
         selectedCategory = allCategories.first;
 
         print('All Categories: $allCategories');
+      },
+      error: (message) {
+        utilsServices.showToast(
+          message: message,
+          isError: true,
+        );
+      },
+    );
+  }
+
+  Future<void> getAllProducts() async {
+    setLoading(true);
+
+    Map<String, dynamic> body = {
+      "page": 0,
+      "title": null,
+      "categoryId": "G1Gkh4GhGa",
+      "itemsPerPage": 6
+    };
+
+    HomeResult<ItemModels> homeResult =
+        await homeRepository.getAllProducts(body);
+
+    setLoading(false);
+
+    homeResult.when(
+      success: (data) {
+        print('All Products: $data');
       },
       error: (message) {
         utilsServices.showToast(
