@@ -18,6 +18,9 @@ abstract class AppPages {
     GetPage(
       name: PagesRoutes.base,
       page: () => const BaseScreen(),
+      bindings: [
+        HomeBinding(),
+      ],
     ),
   ];
 }
