@@ -37,7 +37,7 @@ class _ProductScreenState extends State<ProductScreen> {
               Expanded(
                 child: Hero(
                     tag: widget.item.imgUrl,
-                    child: Image.asset(widget.item.imgUrl)),
+                    child: Image.network(widget.item.imgUrl)),
               ),
               const SizedBox(height: 20),
               Expanded(
@@ -75,14 +75,16 @@ class _ProductScreenState extends State<ProductScreen> {
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                            QuantityWidget(
-                              value: cartItemQuantity,
-                              suffixText: widget.item.unit,
-                              result: (quantity) {
-                                setState(() {
-                                  cartItemQuantity = quantity;
-                                });
-                              },
+                            Flexible(
+                              child: QuantityWidget(
+                                value: cartItemQuantity,
+                                suffixText: widget.item.unit,
+                                result: (quantity) {
+                                  setState(() {
+                                    cartItemQuantity = quantity;
+                                  });
+                                },
+                              ),
                             ),
                           ],
                         ),

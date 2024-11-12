@@ -9,12 +9,18 @@ class HomeController extends GetxController {
   final homeRepository = HomeRepository();
   final utilsServices = UtilsServices();
 
-  bool isLoading = false;
+  bool isCategoryLoading = false;
+  bool isProductLoading = false;
   List<CategoryModels> allCategories = [];
   CategoryModels? selectedCategory;
+  List<ItemModels> get allProducts => selectedCategory?.items ?? [];
 
-  void setLoading(bool value) {
-    isLoading = value;
+  void setLoading(bool value, {bool isProduct = false}) {
+    if (!isProduct) {
+      isCategoryLoading = value;
+    } else {
+      isProductLoading = value;
+    }
     update();
   }
 
@@ -27,6 +33,8 @@ class HomeController extends GetxController {
   selectCategory(CategoryModels category) {
     selectedCategory = category;
     update();
+
+    if (selectedCategory!.items.isNotEmpty) return;
 
     getAllProducts();
   }
@@ -59,7 +67,7 @@ class HomeController extends GetxController {
   }
 
   Future<void> getAllProducts() async {
-    setLoading(true);
+    setLoading(true, isProduct: true);
 
     Map<String, dynamic> body = {
       "page": selectedCategory!.pagination,
@@ -70,11 +78,11 @@ class HomeController extends GetxController {
     HomeResult<ItemModels> homeResult =
         await homeRepository.getAllProducts(body);
 
-    setLoading(false);
+    setLoading(false, isProduct: true);
 
     homeResult.when(
       success: (data) {
-        print('All Products: $data');
+        selectedCategory!.items = data;
       },
       error: (message) {
         utilsServices.showToast(
