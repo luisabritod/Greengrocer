@@ -14,17 +14,15 @@ class HomeTab extends StatefulWidget {
 }
 
 class _HomeTabState extends State<HomeTab> {
-  String selectedCategory = 'Fruits';
-
   GlobalKey<CartIconKey> globalKeyCartItems = GlobalKey<CartIconKey>();
+
+  final searchController = TextEditingController();
 
   late Function(GlobalKey) runAddToCartAnimation;
 
   void itemSelectedCartAnimation(GlobalKey gkImage) {
     runAddToCartAnimation(gkImage);
   }
-
-  final controller = Get.find<HomeController>();
 
   @override
   Widget build(BuildContext context) {
@@ -77,38 +75,56 @@ class _HomeTabState extends State<HomeTab> {
           child: Column(
             children: [
               //search body
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 18,
-                  horizontal: 20,
-                ),
-                child: TextFormField(
-                  onChanged: (value) {
-                    controller.searchTitle.value = value;
-                  },
-                  decoration: InputDecoration(
-                    filled: true,
-                    isDense: true,
-                    prefixIcon: Icon(
-                      Icons.search,
-                      color: CustomColors.primaryGreen,
-                      size: 21,
+              GetBuilder<HomeController>(
+                builder: (controller) {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 18,
+                      horizontal: 20,
                     ),
-                    hintText: 'Search...',
-                    hintStyle: TextStyle(
-                      color: Colors.grey[500],
-                      fontSize: 14,
-                    ),
-                    fillColor: Colors.white,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(60),
-                      borderSide: const BorderSide(
-                        width: 0,
-                        style: BorderStyle.none,
+                    child: TextFormField(
+                      controller: searchController,
+                      onChanged: (value) {
+                        controller.searchTitle.value = value;
+                      },
+                      decoration: InputDecoration(
+                        filled: true,
+                        isDense: true,
+                        prefixIcon: Icon(
+                          Icons.search,
+                          color: CustomColors.primaryGreen,
+                          size: 21,
+                        ),
+                        hintText: 'Search...',
+                        hintStyle: TextStyle(
+                          color: Colors.grey[500],
+                          fontSize: 14,
+                        ),
+                        fillColor: Colors.white,
+                        suffixIcon: controller.searchTitle.value.isNotEmpty
+                            ? IconButton(
+                                onPressed: () {
+                                  searchController.clear();
+                                  controller.searchTitle.value = '';
+                                  FocusScope.of(context).unfocus();
+                                },
+                                icon: Icon(
+                                  Icons.close,
+                                  color: CustomColors.primaryGreen,
+                                  size: 21,
+                                ))
+                            : null,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(60),
+                          borderSide: const BorderSide(
+                            width: 0,
+                            style: BorderStyle.none,
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                ),
+                  );
+                },
               ),
               //categories
               GetBuilder<HomeController>(

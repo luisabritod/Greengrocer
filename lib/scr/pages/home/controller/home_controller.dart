@@ -36,10 +36,7 @@ class HomeController extends GetxController {
     super.onInit();
 
     debounce(searchTitle, (_) {
-      if (searchTitle.isEmpty) {
-        selectedCategory!.items.clear();
-        getAllProducts();
-      }
+      update();
     }, time: const Duration(milliseconds: 600));
 
     getAllCategories();
