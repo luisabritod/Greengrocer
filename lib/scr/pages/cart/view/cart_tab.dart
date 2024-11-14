@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:greengrocer/scr/config/config.dart';
 import 'package:greengrocer/scr/models/models.dart';
-import 'package:greengrocer/scr/pages/cart/cart.dart';
+// import 'package:greengrocer/scr/pages/cart/cart.dart';
 import 'package:greengrocer/scr/services/services.dart';
 import 'package:greengrocer/scr/widgets/widgets.dart';
 
@@ -16,22 +16,23 @@ class _CartTabState extends State<CartTab> {
   final UtilsServices utilsServices = UtilsServices();
 
   void removeItemFromCart(CartItemModel cartItem) {
-    setState(() {
-      cartItems.remove(cartItem);
+    // setState(() {
+    //   cartItems.remove(cartItem);
 
-      utilsServices.showToast(
-          message: '${cartItem.item.itemName} removed from cart');
-    });
+    //   utilsServices.showToast(
+    //       message: '${cartItem.item.itemName} removed from cart');
+    // });
   }
 
   double cartTotalPrice() {
-    double totalPrice = 0;
-    for (var item in cartItems) {
-      setState(() {
-        totalPrice += item.totalPrice();
-      });
-    }
-    return totalPrice;
+    // double totalPrice = 0;
+    // for (var item in cartItems) {
+    //   setState(() {
+    //     totalPrice += item.totalPrice();
+    //   });
+    // }
+    // return totalPrice;
+    return 0;
   }
 
   @override
@@ -46,12 +47,13 @@ class _CartTabState extends State<CartTab> {
         children: [
           Expanded(
             child: ListView.builder(
-              itemCount: cartItems.length,
+              itemCount: 0,
               itemBuilder: (context, index) {
-                return CartTile(
-                  cartItem: cartItems[index],
-                  remove: removeItemFromCart,
-                );
+                return Container();
+                // return CartTile(
+                //   cartItem: cartItems[index],
+                //   remove: removeItemFromCart,
+                // );
               },
             ),
           ),

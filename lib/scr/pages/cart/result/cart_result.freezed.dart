@@ -16,23 +16,22 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$CartResult<T> {
-  T get data => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(T data) sucess,
-    required TResult Function(T data) error,
+    required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(T data)? sucess,
-    TResult? Function(T data)? error,
+    TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T data)? sucess,
-    TResult Function(T data)? error,
+    TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -55,12 +54,6 @@ mixin _$CartResult<T> {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
-  /// Create a copy of CartResult
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $CartResultCopyWith<T, CartResult<T>> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -68,8 +61,6 @@ abstract class $CartResultCopyWith<T, $Res> {
   factory $CartResultCopyWith(
           CartResult<T> value, $Res Function(CartResult<T>) then) =
       _$CartResultCopyWithImpl<T, $Res, CartResult<T>>;
-  @useResult
-  $Res call({T data});
 }
 
 /// @nodoc
@@ -84,27 +75,13 @@ class _$CartResultCopyWithImpl<T, $Res, $Val extends CartResult<T>>
 
   /// Create a copy of CartResult
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? data = freezed,
-  }) {
-    return _then(_value.copyWith(
-      data: freezed == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as T,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$CartSucessImplCopyWith<T, $Res>
-    implements $CartResultCopyWith<T, $Res> {
+abstract class _$$CartSucessImplCopyWith<T, $Res> {
   factory _$$CartSucessImplCopyWith(
           _$CartSucessImpl<T> value, $Res Function(_$CartSucessImpl<T>) then) =
       __$$CartSucessImplCopyWithImpl<T, $Res>;
-  @override
   @useResult
   $Res call({T data});
 }
@@ -170,7 +147,7 @@ class _$CartSucessImpl<T> implements CartSucess<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(T data) sucess,
-    required TResult Function(T data) error,
+    required TResult Function(String message) error,
   }) {
     return sucess(data);
   }
@@ -179,7 +156,7 @@ class _$CartSucessImpl<T> implements CartSucess<T> {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(T data)? sucess,
-    TResult? Function(T data)? error,
+    TResult? Function(String message)? error,
   }) {
     return sucess?.call(data);
   }
@@ -188,7 +165,7 @@ class _$CartSucessImpl<T> implements CartSucess<T> {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T data)? sucess,
-    TResult Function(T data)? error,
+    TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (sucess != null) {
@@ -232,26 +209,22 @@ class _$CartSucessImpl<T> implements CartSucess<T> {
 abstract class CartSucess<T> implements CartResult<T> {
   factory CartSucess(final T data) = _$CartSucessImpl<T>;
 
-  @override
   T get data;
 
   /// Create a copy of CartResult
   /// with the given fields replaced by the non-null parameter values.
-  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CartSucessImplCopyWith<T, _$CartSucessImpl<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$CartErrorImplCopyWith<T, $Res>
-    implements $CartResultCopyWith<T, $Res> {
+abstract class _$$CartErrorImplCopyWith<T, $Res> {
   factory _$$CartErrorImplCopyWith(
           _$CartErrorImpl<T> value, $Res Function(_$CartErrorImpl<T>) then) =
       __$$CartErrorImplCopyWithImpl<T, $Res>;
-  @override
   @useResult
-  $Res call({T data});
+  $Res call({String message});
 }
 
 /// @nodoc
@@ -267,13 +240,13 @@ class __$$CartErrorImplCopyWithImpl<T, $Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? data = freezed,
+    Object? message = null,
   }) {
     return _then(_$CartErrorImpl<T>(
-      freezed == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as T,
+      null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -281,14 +254,14 @@ class __$$CartErrorImplCopyWithImpl<T, $Res>
 /// @nodoc
 
 class _$CartErrorImpl<T> implements CartError<T> {
-  _$CartErrorImpl(this.data);
+  _$CartErrorImpl(this.message);
 
   @override
-  final T data;
+  final String message;
 
   @override
   String toString() {
-    return 'CartResult<$T>.error(data: $data)';
+    return 'CartResult<$T>.error(message: $message)';
   }
 
   @override
@@ -296,12 +269,11 @@ class _$CartErrorImpl<T> implements CartError<T> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CartErrorImpl<T> &&
-            const DeepCollectionEquality().equals(other.data, data));
+            (identical(other.message, message) || other.message == message));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(data));
+  int get hashCode => Object.hash(runtimeType, message);
 
   /// Create a copy of CartResult
   /// with the given fields replaced by the non-null parameter values.
@@ -315,29 +287,29 @@ class _$CartErrorImpl<T> implements CartError<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(T data) sucess,
-    required TResult Function(T data) error,
+    required TResult Function(String message) error,
   }) {
-    return error(data);
+    return error(message);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(T data)? sucess,
-    TResult? Function(T data)? error,
+    TResult? Function(String message)? error,
   }) {
-    return error?.call(data);
+    return error?.call(message);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T data)? sucess,
-    TResult Function(T data)? error,
+    TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
-      return error(data);
+      return error(message);
     }
     return orElse();
   }
@@ -375,14 +347,12 @@ class _$CartErrorImpl<T> implements CartError<T> {
 }
 
 abstract class CartError<T> implements CartResult<T> {
-  factory CartError(final T data) = _$CartErrorImpl<T>;
+  factory CartError(final String message) = _$CartErrorImpl<T>;
 
-  @override
-  T get data;
+  String get message;
 
   /// Create a copy of CartResult
   /// with the given fields replaced by the non-null parameter values.
-  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CartErrorImplCopyWith<T, _$CartErrorImpl<T>> get copyWith =>
       throw _privateConstructorUsedError;

@@ -71,15 +71,6 @@ List<String> categories = [
   'Cereal',
 ];
 
-List<CartItemModel> cartItems = [
-  CartItemModel(item: apple, quantity: 2),
-  CartItemModel(item: grape, quantity: 1),
-  CartItemModel(item: guava, quantity: 3),
-  CartItemModel(item: kiwi, quantity: 2),
-  CartItemModel(item: mango, quantity: 1),
-  CartItemModel(item: papaya, quantity: 2),
-];
-
 List<OrdersModel> orders = [
   // Order 01
   OrdersModel(
@@ -94,14 +85,14 @@ List<OrdersModel> orders = [
     status: 'pending_payment',
     total: 11.0,
     items: [
-      CartItemModel(
-        item: apple,
-        quantity: 2,
-      ),
-      CartItemModel(
-        item: mango,
-        quantity: 2,
-      ),
+      // CartItemModel(
+      //   item: apple,
+      //   quantity: 2,
+      // ),
+      // CartItemModel(
+      //   item: mango,
+      //   quantity: 2,
+      // ),
     ],
   ),
 
@@ -118,10 +109,10 @@ List<OrdersModel> orders = [
     status: 'delivered',
     total: 11.5,
     items: [
-      CartItemModel(
-        item: guava,
-        quantity: 1,
-      ),
+      // CartItemModel(
+      //   item: guava,
+      //   quantity: 1,
+      // ),
     ],
   ),
 
@@ -138,14 +129,14 @@ List<OrdersModel> orders = [
     status: 'refunded',
     total: 11.5,
     items: [
-      CartItemModel(
-        item: kiwi,
-        quantity: 1,
-      ),
-      CartItemModel(
-        item: grape,
-        quantity: 5,
-      )
+      // CartItemModel(
+      //   item: kiwi,
+      //   quantity: 1,
+      // ),
+      // CartItemModel(
+      //   item: grape,
+      //   quantity: 5,
+      // )
     ],
   ),
 ];
