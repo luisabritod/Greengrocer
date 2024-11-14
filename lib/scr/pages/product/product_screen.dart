@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:greengrocer/scr/config/config.dart';
 import 'package:greengrocer/scr/pages/base/base.dart';
+import 'package:greengrocer/scr/pages/cart/cart.dart';
 import 'package:greengrocer/scr/services/services.dart';
 import 'package:greengrocer/scr/models/models.dart';
 import 'package:greengrocer/scr/widgets/widgets.dart';
@@ -21,6 +22,7 @@ class _ProductScreenState extends State<ProductScreen> {
   int cartItemQuantity = 1;
 
   final navigationController = Get.find<NavigationController>();
+  final cartController = Get.find<CartController>();
 
   @override
   Widget build(BuildContext context) {
@@ -126,6 +128,10 @@ class _ProductScreenState extends State<ProductScreen> {
                             ),
                             onPressed: () {
                               Get.back();
+
+                              cartController.addItemCart(
+                                  item: widget.item,
+                                  quantity: cartItemQuantity);
 
                               navigationController
                                   .navigatePageView(NavigationTabs.cart);

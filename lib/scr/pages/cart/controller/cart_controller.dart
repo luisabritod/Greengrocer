@@ -79,15 +79,6 @@ class CartController extends GetxController {
           isError: true,
         );
       });
-
-      //add to cart
-      cartItems.add(
-        CartItemModel(
-          id: '',
-          item: item,
-          quantity: quantity,
-        ),
-      );
     }
 
     update();
