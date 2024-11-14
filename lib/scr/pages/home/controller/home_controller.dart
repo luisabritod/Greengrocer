@@ -42,6 +42,39 @@ class HomeController extends GetxController {
     getAllCategories();
   }
 
+  void filterByTitle() {
+    for (var category in allCategories) {
+      category.items.clear();
+      category.pagination = 0;
+    }
+
+    if (searchTitle.value.isEmpty) {
+      allCategories.removeAt(0);
+    } else {
+      CategoryModels? c = allCategories.firstWhereOrNull((cat) => cat.id == '');
+
+      if (c == null) {
+        final allProductsCategory = CategoryModels(
+          title: 'All Products',
+          id: '',
+          items: [],
+          pagination: 0,
+        );
+
+        allCategories.insert(0, allProductsCategory);
+      } else {
+        c.items.clear();
+        c.pagination = 0;
+      }
+    }
+
+    selectedCategory = allCategories.first;
+
+    update();
+
+    getAllProducts();
+  }
+
   selectCategory(CategoryModels category) {
     selectedCategory = category;
     update();
