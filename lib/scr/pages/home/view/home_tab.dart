@@ -24,10 +24,7 @@ class _HomeTabState extends State<HomeTab> {
     runAddToCartAnimation(gkImage);
   }
 
-  @override
-  void initState() {
-    super.initState();
-  }
+  final controller = Get.find<HomeController>();
 
   @override
   Widget build(BuildContext context) {
@@ -86,6 +83,9 @@ class _HomeTabState extends State<HomeTab> {
                   horizontal: 20,
                 ),
                 child: TextFormField(
+                  onChanged: (value) {
+                    controller.searchTitle.value = value;
+                  },
                   decoration: InputDecoration(
                     filled: true,
                     isDense: true,

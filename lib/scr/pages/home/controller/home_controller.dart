@@ -15,6 +15,8 @@ class HomeController extends GetxController {
   CategoryModels? selectedCategory;
   List<ItemModels> get allProducts => selectedCategory?.items ?? [];
 
+  RxString searchTitle = ''.obs;
+
   bool get isLastPage {
     if (selectedCategory!.items.length < itemsPerPage) return true;
     return selectedCategory!.pagination * itemsPerPage > allProducts.length;
@@ -32,6 +34,14 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+
+    debounce(searchTitle, (_) {
+      if (searchTitle.isEmpty) {
+        selectedCategory!.items.clear();
+        getAllProducts();
+      }
+    }, time: const Duration(milliseconds: 600));
+
     getAllCategories();
   }
 
