@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:greengrocer/scr/config/config.dart';
 import 'package:greengrocer/scr/pages/pages.dart';
 
@@ -10,22 +11,14 @@ class BaseScreen extends StatefulWidget {
 }
 
 class _BaseScreenState extends State<BaseScreen> {
-  int currentIndex = 0;
-  final pageController = PageController();
+  final navigationController = Get.find<NavigationController>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: currentIndex,
-        onTap: (value) => setState(() {
-          currentIndex = value;
-          pageController.animateToPage(
-            value,
-            duration: const Duration(milliseconds: 700),
-            curve: Curves.easeInOutQuart,
-          );
-        }),
+        currentIndex: navigationController.currentIndex,
+        onTap: (value) => navigationController.navigatePageView(value),
         type: BottomNavigationBarType.fixed,
         iconSize: 30,
         selectedItemColor: CustomColors.primaryGreen,
@@ -50,7 +43,7 @@ class _BaseScreenState extends State<BaseScreen> {
       ),
       body: PageView(
         physics: const NeverScrollableScrollPhysics(),
-        controller: pageController,
+        controller: navigationController.pageController,
         children: const [
           HomeTab(),
           CartTab(),

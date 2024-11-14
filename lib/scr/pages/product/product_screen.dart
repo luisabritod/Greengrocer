@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:greengrocer/scr/config/config.dart';
+import 'package:greengrocer/scr/pages/base/base.dart';
 import 'package:greengrocer/scr/services/services.dart';
 import 'package:greengrocer/scr/models/models.dart';
 import 'package:greengrocer/scr/widgets/widgets.dart';
@@ -17,6 +19,8 @@ class _ProductScreenState extends State<ProductScreen> {
   UtilsServices utilsServices = UtilsServices();
 
   int cartItemQuantity = 1;
+
+  final navigationController = Get.find<NavigationController>();
 
   @override
   Widget build(BuildContext context) {
@@ -120,7 +124,12 @@ class _ProductScreenState extends State<ProductScreen> {
                                 borderRadius: BorderRadius.circular(15),
                               ),
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              Get.back();
+
+                              navigationController
+                                  .navigatePageView(NavigationTabs.cart);
+                            },
                             label: const Text(
                               'Add to Cart',
                               style: TextStyle(

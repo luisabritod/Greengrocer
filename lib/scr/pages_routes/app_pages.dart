@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:greengrocer/scr/pages/base/binding/navigation_binding.dart';
 import 'package:greengrocer/scr/pages/pages.dart';
 
 abstract class AppPages {
@@ -19,6 +20,7 @@ abstract class AppPages {
       name: PagesRoutes.base,
       page: () => const BaseScreen(),
       bindings: [
+        NavigationBinding(),
         HomeBinding(),
       ],
     ),
