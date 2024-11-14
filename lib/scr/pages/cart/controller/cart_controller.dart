@@ -46,4 +46,50 @@ class CartController extends GetxController {
       );
     });
   }
+
+  int getItemIndex(ItemModels item) {
+    return cartItems.indexWhere((itemInList) => itemInList.id == item.id);
+  }
+
+  Future<void> addItemCart({required ItemModels item, int quantity = 1}) async {
+    int itemIndex = getItemIndex(item);
+
+    if (itemIndex >= 0) {
+      //already in cart
+      cartItems[itemIndex].quantity += quantity;
+    } else {
+      final CartResult<String> result = await cartRepository.addItemToCart(
+        token: authController.user.token!,
+        userId: authController.user.id!,
+        productId: item.id,
+        quantity: quantity,
+      );
+
+      result.when(sucess: (data) {
+        cartItems.add(
+          CartItemModel(
+            id: data,
+            item: item,
+            quantity: quantity,
+          ),
+        );
+      }, error: (message) {
+        utilsServices.showToast(
+          message: message,
+          isError: true,
+        );
+      });
+
+      //add to cart
+      cartItems.add(
+        CartItemModel(
+          id: '',
+          item: item,
+          quantity: quantity,
+        ),
+      );
+    }
+
+    update();
+  }
 }

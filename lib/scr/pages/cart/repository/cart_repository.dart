@@ -25,4 +25,30 @@ class CartRepository {
       return CartResult.error('Error');
     }
   }
+
+  Future addItemToCart({
+    required String token,
+    required String userId,
+    required String productId,
+    required int quantity,
+  }) async {
+    final result = await _httpManager.restRequest(
+      url: Endpoints.addItem,
+      method: HttpMethods.post,
+      body: {
+        "user": userId,
+        "quantity": quantity,
+        "productId": productId,
+      },
+      headers: {
+        'token': token,
+      },
+    );
+
+    if (result['result'] != null) {
+      return CartResult<String>.sucess(result['result']['id']);
+    } else {
+      return CartResult.error('Error');
+    }
+  }
 }
