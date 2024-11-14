@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class CustomTextField extends StatefulWidget {
   const CustomTextField({
@@ -7,7 +8,12 @@ class CustomTextField extends StatefulWidget {
     required this.hintText,
     required this.labelText,
     required this.keyboardType,
+    this.inputFormatters,
     this.isPassword = false,
+    required this.validator,
+    this.controller,
+    this.onSaved,
+    this.formFieldKey,
   });
 
   final IconData icon;
@@ -15,6 +21,11 @@ class CustomTextField extends StatefulWidget {
   final String labelText;
   final TextInputType keyboardType;
   final bool isPassword;
+  final String? Function(String?)? validator;
+  final void Function(String?)? onSaved;
+  final TextEditingController? controller;
+  final List<TextInputFormatter>? inputFormatters;
+  final GlobalKey<FormFieldState>? formFieldKey;
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
@@ -35,8 +46,13 @@ class _CustomTextFieldState extends State<CustomTextField> {
     return Padding(
       padding: const EdgeInsets.only(bottom: 15.0),
       child: TextFormField(
-        keyboardType: TextInputType.emailAddress,
+        key: widget.formFieldKey,
+        keyboardType: widget.keyboardType,
+        inputFormatters: widget.inputFormatters,
+        controller: widget.controller,
         obscureText: isObscure,
+        validator: widget.validator,
+        onSaved: widget.onSaved,
         decoration: InputDecoration(
           labelText: widget.labelText,
           hintText: widget.hintText,

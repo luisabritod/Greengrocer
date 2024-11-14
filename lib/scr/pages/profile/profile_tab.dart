@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:greengrocer/scr/config/config.dart';
+import 'package:greengrocer/scr/pages/auth/auth.dart';
 
 class ProfileTab extends StatelessWidget {
   const ProfileTab({super.key});
@@ -14,7 +15,9 @@ class ProfileTab extends StatelessWidget {
         actions: [
           IconButton(
             icon: const Icon(Icons.logout),
-            onPressed: () {},
+            onPressed: () {
+              AuthController().signOut();
+            },
           )
         ],
       ),

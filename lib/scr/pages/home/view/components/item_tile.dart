@@ -40,7 +40,7 @@ class ItemTile extends StatelessWidget {
                 children: [
                   //image
                   Expanded(
-                    child: Image.asset(
+                    child: Image.network(
                       item.imgUrl,
                       key: imageGk,
                     ),
