@@ -183,28 +183,46 @@ class _HomeTabState extends State<HomeTab> {
                 builder: (controller) {
                   return Expanded(
                     child: !controller.isProductLoading
-                        ? GridView.builder(
-                            padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
-                            physics: const BouncingScrollPhysics(),
-                            gridDelegate:
-                                const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              mainAxisSpacing: 10,
-                              crossAxisSpacing: 10,
-                              childAspectRatio: 9 / 11.5,
+                        ? Visibility(
+                            visible: (controller.selectedCategory?.items ?? [])
+                                .isNotEmpty,
+                            replacement: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.search_off,
+                                  size: 40,
+                                  color: CustomColors.primaryGreen,
+                                ),
+                                const Text('No products found!'),
+                              ],
                             ),
-                            itemCount: controller.allProducts.length,
-                            itemBuilder: (_, index) {
-                              if (index + 1 == controller.allProducts.length &&
-                                  !controller.isLastPage) {
-                                controller.loadMoreProducts();
-                              }
+                            child: GridView.builder(
+                                padding:
+                                    const EdgeInsets.fromLTRB(16, 0, 16, 16),
+                                physics: const BouncingScrollPhysics(),
+                                gridDelegate:
+                                    const SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2,
+                                  mainAxisSpacing: 10,
+                                  crossAxisSpacing: 10,
+                                  childAspectRatio: 9 / 11.5,
+                                ),
+                                itemCount: controller.allProducts.length,
+                                itemBuilder: (_, index) {
+                                  if (index + 1 ==
+                                          controller.allProducts.length &&
+                                      !controller.isLastPage) {
+                                    controller.loadMoreProducts();
+                                  }
 
-                              return ItemTile(
-                                item: controller.allProducts[index],
-                                cartAnimationMethod: itemSelectedCartAnimation,
-                              );
-                            })
+                                  return ItemTile(
+                                    item: controller.allProducts[index],
+                                    cartAnimationMethod:
+                                        itemSelectedCartAnimation,
+                                  );
+                                }),
+                          )
                         : GridView.count(
                             padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
                             physics: const BouncingScrollPhysics(),
