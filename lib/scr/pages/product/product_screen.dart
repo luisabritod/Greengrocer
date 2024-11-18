@@ -8,9 +8,9 @@ import 'package:greengrocer/scr/models/models.dart';
 import 'package:greengrocer/scr/widgets/widgets.dart';
 
 class ProductScreen extends StatefulWidget {
-  const ProductScreen({super.key, required this.item});
+  ProductScreen({super.key});
 
-  final ItemModels item;
+  final ItemModels item = Get.arguments;
 
   @override
   State<ProductScreen> createState() => _ProductScreenState();
