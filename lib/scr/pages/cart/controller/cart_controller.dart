@@ -13,6 +13,8 @@ class CartController extends GetxController {
 
   List<CartItemModel> cartItems = [];
 
+  bool isCheckoutLoading = false;
+
   @override
   void onInit() {
     super.onInit();
@@ -30,13 +32,25 @@ class CartController extends GetxController {
     return total;
   }
 
+  void setCheckoutLoading(bool value) {
+    isCheckoutLoading = value;
+    update();
+  }
+
   Future checkoutCart() async {
+    setCheckoutLoading(true);
+
     CartResult<OrdersModel> result = await cartRepository.checkouCart(
       token: authController.user.token!,
       total: cartTotalPrice(),
     );
 
+    setCheckoutLoading(false);
+
     result.when(sucess: (order) {
+      cartItems.clear();
+      update();
+
       showDialog(
         context: Get.context!,
         builder: (_) {
@@ -46,7 +60,6 @@ class CartController extends GetxController {
     }, error: (message) {
       utilsServices.showToast(
         message: message,
-        isError: true,
       );
     });
   }
