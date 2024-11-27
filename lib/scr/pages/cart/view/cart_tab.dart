@@ -28,6 +28,27 @@ class _CartTabState extends State<CartTab> {
           Expanded(
             child: GetBuilder<CartController>(
               builder: (controller) {
+                if (controller.cartItems.isEmpty) {
+                  return Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.remove_shopping_cart,
+                        size: 40,
+                        color: CustomColors.primaryGreen,
+                      ),
+                      const SizedBox(height: 10),
+                      const Text(
+                        'Your cart is empty',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  );
+                }
+
                 return ListView.builder(
                   itemCount: controller.cartItems.length,
                   itemBuilder: (context, index) {

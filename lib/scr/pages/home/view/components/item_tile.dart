@@ -2,17 +2,33 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:greengrocer/scr/config/config.dart';
 import 'package:greengrocer/scr/models/models.dart';
+import 'package:greengrocer/scr/pages/cart/cart.dart';
 import 'package:greengrocer/scr/pages_routes/pages_routes.dart';
 import 'package:greengrocer/scr/services/services.dart';
 
-class ItemTile extends StatelessWidget {
-  ItemTile({super.key, required this.item, required this.cartAnimationMethod});
+class ItemTile extends StatefulWidget {
+  const ItemTile(
+      {super.key, required this.item, required this.cartAnimationMethod});
 
   final ItemModels item;
   final void Function(GlobalKey) cartAnimationMethod;
-  final GlobalKey imageGk = GlobalKey();
 
-  UtilsServices utilsServices = UtilsServices();
+  @override
+  State<ItemTile> createState() => _ItemTileState();
+}
+
+class _ItemTileState extends State<ItemTile> {
+  final GlobalKey imageGk = GlobalKey();
+  final UtilsServices utilsServices = UtilsServices();
+  final cartController = Get.find<CartController>();
+
+  IconData tileIcon = Icons.add_shopping_cart_outlined;
+
+  Future<void> switchIcon() async {
+    setState(() => tileIcon = Icons.check);
+    await Future.delayed(const Duration(milliseconds: 1500));
+    setState(() => tileIcon = Icons.add_shopping_cart_outlined);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +36,7 @@ class ItemTile extends StatelessWidget {
       children: [
         GestureDetector(
           onTap: () {
-            Get.toNamed(PagesRoutes.productRoute, arguments: item);
+            Get.toNamed(PagesRoutes.productRoute, arguments: widget.item);
           },
           child: Card(
             elevation: 1,
@@ -36,17 +52,17 @@ class ItemTile extends StatelessWidget {
                   //image
                   Expanded(
                     child: Image.network(
-                      item.imgUrl,
+                      widget.item.imgUrl,
                       key: imageGk,
                     ),
                   ),
                   //name
-                  Text(item.itemName),
+                  Text(widget.item.itemName),
                   //price
                   Row(
                     children: [
                       Text(
-                        utilsServices.priceToCurrency(item.price),
+                        utilsServices.priceToCurrency(widget.item.price),
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
@@ -54,7 +70,7 @@ class ItemTile extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        ' / ${item.unit}',
+                        ' / ${widget.item.unit}',
                         style: TextStyle(
                           fontSize: 12,
                           color: Colors.grey[500],
@@ -73,7 +89,11 @@ class ItemTile extends StatelessWidget {
           right: 4,
           child: GestureDetector(
             onTap: () {
-              cartAnimationMethod(imageGk);
+              switchIcon();
+
+              cartController.addItemToCart(item: widget.item);
+
+              widget.cartAnimationMethod(imageGk);
             },
             child: Container(
               height: 40,
@@ -85,8 +105,8 @@ class ItemTile extends StatelessWidget {
                   topRight: Radius.circular(20),
                 ),
               ),
-              child: const Icon(
-                Icons.add_shopping_cart_outlined,
+              child: Icon(
+                tileIcon,
                 color: Colors.white,
                 size: 20,
               ),

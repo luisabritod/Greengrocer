@@ -80,7 +80,7 @@ class CartController extends GetxController {
     return cartItems.indexWhere((itemInList) => itemInList.item.id == item.id);
   }
 
-  Future<void> addItemCart({
+  Future<void> addItemToCart({
     required ItemModels item,
     int quantity = 1,
   }) async {

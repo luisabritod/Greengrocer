@@ -3,6 +3,8 @@ import 'package:add_to_cart_animation/add_to_cart_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:greengrocer/scr/config/config.dart';
+import 'package:greengrocer/scr/pages/base/base.dart';
+import 'package:greengrocer/scr/pages/cart/cart.dart';
 import 'package:greengrocer/scr/pages/home/home.dart';
 import 'package:greengrocer/scr/widgets/widgets.dart';
 
@@ -17,6 +19,7 @@ class _HomeTabState extends State<HomeTab> {
   GlobalKey<CartIconKey> globalKeyCartItems = GlobalKey<CartIconKey>();
 
   final searchController = TextEditingController();
+  final navigationController = Get.find<NavigationController>();
 
   late Function(GlobalKey) runAddToCartAnimation;
 
@@ -43,24 +46,29 @@ class _HomeTabState extends State<HomeTab> {
                 right: 15,
                 top: 15,
               ),
-              child: GestureDetector(
-                onTap: () {},
-                child: Badge(
-                  backgroundColor: CustomColors.primaryGreen,
-                  label: const Text(
-                    '2',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 12,
+              child: GetBuilder<CartController>(
+                builder: (controller) {
+                  return Badge(
+                    backgroundColor: CustomColors.primaryGreen,
+                    label: Text(
+                      controller.cartItems.length.toString(),
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 12,
+                      ),
                     ),
-                  ),
-                  child: IconButton(
-                    onPressed: () {},
-                    icon: AddToCartIcon(
-                        key: globalKeyCartItems,
-                        icon: const Icon(Icons.shopping_cart)),
-                  ),
-                ),
+                    child: IconButton(
+                      onPressed: () {
+                        print('cliquei');
+                        navigationController
+                            .navigatePageView(NavigationTabs.cart);
+                      },
+                      icon: AddToCartIcon(
+                          key: globalKeyCartItems,
+                          icon: const Icon(Icons.shopping_cart)),
+                    ),
+                  );
+                },
               ),
             ),
           ],
