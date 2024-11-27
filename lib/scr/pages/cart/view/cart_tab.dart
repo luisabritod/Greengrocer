@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:greengrocer/scr/config/config.dart';
 import 'package:greengrocer/scr/pages/cart/cart.dart';
 import 'package:greengrocer/scr/services/services.dart';
-import 'package:greengrocer/scr/widgets/widgets.dart';
 
 class CartTab extends StatefulWidget {
   const CartTab({super.key});
@@ -14,6 +13,7 @@ class CartTab extends StatefulWidget {
 
 class _CartTabState extends State<CartTab> {
   final UtilsServices utilsServices = UtilsServices();
+  final cartController = Get.find<CartController>();
 
   @override
   Widget build(BuildContext context) {
@@ -108,15 +108,7 @@ class _CartTabState extends State<CartTab> {
                       bool? result = await showOrderConfirmation();
 
                       if (result ?? false) {
-                        showDialog(
-                          context: context,
-                          builder: (_) {
-                            return PaymentDialog(order: orders.first);
-                          },
-                        );
-                      } else {
-                        utilsServices.showToast(
-                            message: 'Order not confirmed', isError: true);
+                        cartController.checkoutCart();
                       }
                     },
                     style: ElevatedButton.styleFrom(

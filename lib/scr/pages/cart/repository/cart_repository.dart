@@ -26,6 +26,30 @@ class CartRepository {
     }
   }
 
+  Future<CartResult<OrdersModel>> checkouCart({
+    required String token,
+    required double total,
+  }) async {
+    final result = await _httpManager.restRequest(
+      url: Endpoints.checkout,
+      method: HttpMethods.post,
+      body: {
+        'total': total,
+      },
+      headers: {
+        'X-Parse-Session-Token': token,
+      },
+    );
+
+    if (result['result'] != null) {
+      final order = OrdersModel.fromJson(result['result']);
+
+      return CartResult<OrdersModel>.sucess(order);
+    } else {
+      return CartResult.error('Order Failed');
+    }
+  }
+
   Future<bool> changeItemQuantity({
     required String token,
     required String cartItemId,

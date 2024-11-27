@@ -1,8 +1,10 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:greengrocer/scr/models/models.dart';
 import 'package:greengrocer/scr/pages/auth/auth.dart';
 import 'package:greengrocer/scr/pages/cart/cart.dart';
 import 'package:greengrocer/scr/services/services.dart';
+import 'package:greengrocer/scr/widgets/payment_dialog.dart';
 
 class CartController extends GetxController {
   final cartRepository = CartRepository();
@@ -26,6 +28,27 @@ class CartController extends GetxController {
     }
 
     return total;
+  }
+
+  Future checkoutCart() async {
+    CartResult<OrdersModel> result = await cartRepository.checkouCart(
+      token: authController.user.token!,
+      total: cartTotalPrice(),
+    );
+
+    result.when(sucess: (order) {
+      showDialog(
+        context: Get.context!,
+        builder: (_) {
+          return PaymentDialog(order: order);
+        },
+      );
+    }, error: (message) {
+      utilsServices.showToast(
+        message: message,
+        isError: true,
+      );
+    });
   }
 
   Future<bool> changeItemQuantity({
