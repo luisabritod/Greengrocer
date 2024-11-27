@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:greengrocer/scr/config/config.dart';
 import 'package:greengrocer/scr/models/models.dart';
+import 'package:greengrocer/scr/pages/cart/cart.dart';
 import 'package:greengrocer/scr/services/services.dart';
 import 'package:greengrocer/scr/widgets/widgets.dart';
 
@@ -18,6 +20,7 @@ class CartTile extends StatefulWidget {
 
 class _CartTileState extends State<CartTile> {
   final UtilsServices utilsServices = UtilsServices();
+  final controller = Get.find<CartController>();
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +45,12 @@ class _CartTileState extends State<CartTile> {
         trailing: QuantityWidget(
           suffixText: widget.cartItem.item.unit,
           value: widget.cartItem.quantity,
-          result: (quantity) {},
+          result: (quantity) {
+            controller.changeItemQuantity(
+              item: widget.cartItem,
+              quantity: quantity,
+            );
+          },
           isRemovable: true,
         ),
         subtitle: Text(
