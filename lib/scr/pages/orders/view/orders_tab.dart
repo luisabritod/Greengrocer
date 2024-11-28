@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:greengrocer/scr/config/config.dart';
 import 'package:greengrocer/scr/pages/pages.dart';
 
 class OrdersTab extends StatelessWidget {
