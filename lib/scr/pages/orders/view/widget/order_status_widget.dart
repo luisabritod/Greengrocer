@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:greengrocer/scr/pages/orders/widget/components/components.dart';
+import 'package:greengrocer/scr/pages/orders/view/widget/components/components.dart';
 
 class OrderStatusWidget extends StatelessWidget {
   OrderStatusWidget({super.key, required this.status, required this.isOverdue});

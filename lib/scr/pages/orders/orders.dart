@@ -1,3 +1,3 @@
-export 'components/components.dart';
-export 'orders_tab.dart';
-export 'widget/widget.dart';
+export 'repository/repository.dart';
+export 'result/result.dart';
+export 'view/view.dart';

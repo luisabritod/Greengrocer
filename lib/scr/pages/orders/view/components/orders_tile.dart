@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:greengrocer/scr/config/config.dart';
 import 'package:greengrocer/scr/models/models.dart';
-import 'package:greengrocer/scr/pages/orders/widget/widget.dart';
+import 'package:greengrocer/scr/pages/orders/view/widget/widget.dart';
 import 'package:greengrocer/scr/services/services.dart';
 import 'package:greengrocer/scr/widgets/widgets.dart';
 
