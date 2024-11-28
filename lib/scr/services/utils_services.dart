@@ -39,7 +39,7 @@ class UtilsServices {
     initializeDateFormatting();
 
     DateFormat date = DateFormat.yMd('en_US').add_Hm();
-    return date.format(dateTime);
+    return date.format(dateTime.toLocal());
   }
 
   Uint8List decodeQrCode(String value) {
