@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:greengrocer/scr/config/config.dart';
-import 'package:greengrocer/scr/pages/orders/view/components/components.dart';
+import 'package:greengrocer/scr/pages/pages.dart';
 
 class OrdersTab extends StatelessWidget {
   const OrdersTab({super.key});
@@ -13,15 +14,19 @@ class OrdersTab extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.transparent,
       ),
-      body: ListView.separated(
-        padding: const EdgeInsets.all(16),
-        itemBuilder: (context, index) {
-          return OrdersTile(
-            order: orders[index],
+      body: GetBuilder<OrdersController>(
+        builder: (controller) {
+          return ListView.separated(
+            padding: const EdgeInsets.all(16),
+            itemBuilder: (context, index) {
+              return OrdersTile(
+                order: controller.allOrders[index],
+              );
+            },
+            separatorBuilder: (context, index) => const SizedBox(height: 10),
+            itemCount: controller.allOrders.length,
           );
         },
-        separatorBuilder: (context, index) => const SizedBox(height: 10),
-        itemCount: orders.length,
       ),
     );
   }

@@ -23,6 +23,7 @@ abstract class AppPages {
         NavigationBinding(),
         HomeBinding(),
         CartBinding(),
+        OrdersBinding(),
       ],
     ),
     GetPage(
