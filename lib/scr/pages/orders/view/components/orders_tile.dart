@@ -23,11 +23,16 @@ class OrdersTile extends StatelessWidget {
       child: Theme(
         data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
         child: GetBuilder<OrderItemsController>(
-          init: OrderItemsController(),
+          init: OrderItemsController(order),
           global: false,
           builder: (controller) {
             return ExpansionTile(
               // initiallyExpanded: order.status == 'pending_payment',
+              onExpansionChanged: (value) {
+                if (value && order.items.isEmpty) {
+                  controller.getOrderItems();
+                }
+              },
               title: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
