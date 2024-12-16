@@ -1,8 +1,8 @@
+import 'package:clipboard/clipboard.dart';
 import 'package:flutter/material.dart';
 import 'package:greengrocer/scr/config/config.dart';
 import 'package:greengrocer/scr/models/models.dart';
 import 'package:greengrocer/scr/services/services.dart';
-import 'package:qr_flutter/qr_flutter.dart';
 
 class PaymentDialog extends StatelessWidget {
   PaymentDialog({super.key, required this.order});
@@ -35,10 +35,10 @@ class PaymentDialog extends StatelessWidget {
                 ),
 
                 //qr code
-                QrImageView(
-                  data: 'https://pub.dev/packages/qr_flutter',
-                  version: QrVersions.auto,
-                  size: 200.0,
+                Image.memory(
+                  utilsServices.decodeQrCode(order.qrCodeImage),
+                  width: 200,
+                  height: 200,
                 ),
 
                 //expiration date
@@ -70,7 +70,10 @@ class PaymentDialog extends StatelessWidget {
                       color: CustomColors.primaryGreen,
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    FlutterClipboard.copy(order.copyAndPaste);
+                    utilsServices.showToast(message: 'PIX copied');
+                  },
                   label: const Text(
                     'Copy PIX',
                     style: TextStyle(

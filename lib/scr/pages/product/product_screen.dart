@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:greengrocer/scr/config/config.dart';
+import 'package:greengrocer/scr/pages/base/base.dart';
+import 'package:greengrocer/scr/pages/cart/cart.dart';
 import 'package:greengrocer/scr/services/services.dart';
 import 'package:greengrocer/scr/models/models.dart';
 import 'package:greengrocer/scr/widgets/widgets.dart';
 
 class ProductScreen extends StatefulWidget {
-  const ProductScreen({super.key, required this.item});
+  ProductScreen({super.key});
 
-  final ItemModels item;
+  final ItemModels item = Get.arguments;
 
   @override
   State<ProductScreen> createState() => _ProductScreenState();
@@ -17,6 +20,9 @@ class _ProductScreenState extends State<ProductScreen> {
   UtilsServices utilsServices = UtilsServices();
 
   int cartItemQuantity = 1;
+
+  final navigationController = Get.find<NavigationController>();
+  final cartController = Get.find<CartController>();
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +43,7 @@ class _ProductScreenState extends State<ProductScreen> {
               Expanded(
                 child: Hero(
                     tag: widget.item.imgUrl,
-                    child: Image.asset(widget.item.imgUrl)),
+                    child: Image.network(widget.item.imgUrl)),
               ),
               const SizedBox(height: 20),
               Expanded(
@@ -75,14 +81,16 @@ class _ProductScreenState extends State<ProductScreen> {
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                            QuantityWidget(
-                              value: cartItemQuantity,
-                              suffixText: widget.item.unit,
-                              result: (quantity) {
-                                setState(() {
-                                  cartItemQuantity = quantity;
-                                });
-                              },
+                            Flexible(
+                              child: QuantityWidget(
+                                value: cartItemQuantity,
+                                suffixText: widget.item.unit,
+                                result: (quantity) {
+                                  setState(() {
+                                    cartItemQuantity = quantity;
+                                  });
+                                },
+                              ),
                             ),
                           ],
                         ),
@@ -118,7 +126,16 @@ class _ProductScreenState extends State<ProductScreen> {
                                 borderRadius: BorderRadius.circular(15),
                               ),
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              Get.back();
+
+                              cartController.addItemToCart(
+                                  item: widget.item,
+                                  quantity: cartItemQuantity);
+
+                              navigationController
+                                  .navigatePageView(NavigationTabs.cart);
+                            },
                             label: const Text(
                               'Add to Cart',
                               style: TextStyle(
