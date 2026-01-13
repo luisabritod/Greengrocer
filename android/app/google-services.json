@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "863419310682",
+    "project_id": "greengrocer-6805c",
+    "storage_bucket": "greengrocer-6805c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:863419310682:android:9cec3e3e5160f54786ae63",
+        "android_client_info": {
+          "package_name": "br.com.britodias.greengrocer"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCztyNzU8PmRuEmKvpp2CcLx1caPgJUiWE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

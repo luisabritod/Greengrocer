@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:greengrocer/scr/constants/constants.dart';
 import 'package:greengrocer/scr/models/models.dart';
 import 'package:greengrocer/scr/pages/auth/auth.dart';
 import 'package:greengrocer/scr/pages_routes/pages_routes.dart';
@@ -20,23 +19,15 @@ class AuthController extends GetxController {
   }
 
   Future<void> validateToken() async {
-    String? token = await utilsServices.getLocalData(key: StorageKeys.token);
-
-    if (token == null) {
-      Get.offAllNamed(PagesRoutes.signIn);
-      return;
-    }
-
-    AuthResult result = await authRepository.validateToken(token);
+    AuthResult result = await authRepository.validateToken();
 
     result.when(
       success: (user) {
         this.user = user;
-
-        saveTokenAndProceedToBase();
+        Get.offAllNamed(PagesRoutes.base);
       },
       error: (message) {
-        signOut();
+        Get.offAllNamed(PagesRoutes.signIn);
       },
     );
   }
@@ -48,18 +39,10 @@ class AuthController extends GetxController {
   Future<void> signOut() async {
     user = UserModel();
 
-    await utilsServices.removeLocalData(key: StorageKeys.token);
+    final firebaseAuthService = FirebaseAuthService();
+    await firebaseAuthService.signOut();
 
     Get.offAllNamed(PagesRoutes.signIn);
-  }
-
-  void saveTokenAndProceedToBase() async {
-    await utilsServices.saveLocalData(
-      key: StorageKeys.token,
-      data: user.token!,
-    );
-
-    Get.offAllNamed(PagesRoutes.base);
   }
 
   Future<void> signUp() async {
@@ -72,7 +55,7 @@ class AuthController extends GetxController {
     result.when(
       success: (user) {
         this.user = user;
-        saveTokenAndProceedToBase();
+        Get.offAllNamed(PagesRoutes.base);
       },
       error: (error) {
         utilsServices.showToast(
@@ -97,8 +80,7 @@ class AuthController extends GetxController {
     result.when(
       success: (user) {
         this.user = user;
-
-        saveTokenAndProceedToBase();
+        Get.offAllNamed(PagesRoutes.base);
       },
       error: (message) {
         utilsServices.showToast(message: message, isError: true);

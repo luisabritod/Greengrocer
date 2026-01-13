@@ -42,16 +42,22 @@ dependencies:
   fluttertoast: ^8.2.8
   flutter_bloc: ^8.1.6
   get: ^4.6.6
-  dio: ^5.7.0
   json_serializable: ^6.8.0
   build_runner: ^2.4.13
   json_annotation: ^4.9.0
   freezed: ^2.5.7
   freezed_annotation: ^2.4.4
-  flutter_secure_storage: ^4.2.1
   mask_text_input_formatter: ^2.9.0
   shimmer: ^3.0.0
   clipboard: 0.1.3
+
+  # Firebase
+  firebase_core: ^3.8.1
+  firebase_auth: ^5.3.4
+  cloud_firestore: ^5.5.2
+
+  # Manter dio temporariamente para outras chamadas HTTP (produtos, pedidos, etc)
+  dio: ^5.7.0
 
 dev_dependencies:
   flutter_test:
